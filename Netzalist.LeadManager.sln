@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_docs", "_docs", "{0CEEDFB4-FD61-4EE8-8629-7119C28E0979}"
+	ProjectSection(SolutionItems) = preProject
+		_docs\Software Plattform - Entwicklungsdokumentation.docx = _docs\Software Plattform - Entwicklungsdokumentation.docx
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{5DA75B24-843C-4B61-8919-89AD573A499F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netzalist.LeadManager.Web", "Netzalist.LeadManager.Web\Netzalist.LeadManager.Web.csproj", "{1BB88F6C-246E-47A2-9F71-8E73A3F336EA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Netzalist.LeadManager.Web.Tests", "Netzalist.LeadManager.Web.Tests\Netzalist.LeadManager.Web.Tests.csproj", "{AEF97EAE-93BF-4830-8030-C8A6617BD5A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BB88F6C-246E-47A2-9F71-8E73A3F336EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BB88F6C-246E-47A2-9F71-8E73A3F336EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BB88F6C-246E-47A2-9F71-8E73A3F336EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BB88F6C-246E-47A2-9F71-8E73A3F336EA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEF97EAE-93BF-4830-8030-C8A6617BD5A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEF97EAE-93BF-4830-8030-C8A6617BD5A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEF97EAE-93BF-4830-8030-C8A6617BD5A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEF97EAE-93BF-4830-8030-C8A6617BD5A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1BB88F6C-246E-47A2-9F71-8E73A3F336EA} = {5DA75B24-843C-4B61-8919-89AD573A499F}
+		{AEF97EAE-93BF-4830-8030-C8A6617BD5A9} = {5DA75B24-843C-4B61-8919-89AD573A499F}
+	EndGlobalSection
+EndGlobal
