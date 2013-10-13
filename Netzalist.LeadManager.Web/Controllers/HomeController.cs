@@ -11,7 +11,8 @@ namespace Netzalist.LeadManager.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;;
+            ViewBag.Message = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString.Substring(0,
+                20);
 
             return View();
         }
