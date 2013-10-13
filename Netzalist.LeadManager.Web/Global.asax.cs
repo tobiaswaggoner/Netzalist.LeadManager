@@ -27,7 +27,7 @@ namespace Netzalist.LeadManager.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<Netzalist.LeadManager.Web.Models.DBTest, Netzalist.LeadManager.Web.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Netzalist.LeadManager.Web.Models.NetzalistDb, Netzalist.LeadManager.Web.Migrations.Configuration>());
 
         }
     }
