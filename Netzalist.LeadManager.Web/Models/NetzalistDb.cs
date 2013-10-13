@@ -17,5 +17,6 @@ namespace Netzalist.LeadManager.Web.Models
         }
 
         public DbSet<Tenant> Tenants { get; set; }
+        public DbSet<DeleteMe> DeleteMes { get; set; }
     }
 }

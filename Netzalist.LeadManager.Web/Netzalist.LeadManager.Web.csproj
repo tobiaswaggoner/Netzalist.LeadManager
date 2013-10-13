@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DeleteMeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TenantController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -172,8 +173,13 @@
     <Compile Include="Migrations\201310131625142_initial.Designer.cs">
       <DependentUpon>201310131625142_initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310131634147_DeleteMeAdded.cs" />
+    <Compile Include="Migrations\201310131634147_DeleteMeAdded.Designer.cs">
+      <DependentUpon>201310131634147_DeleteMeAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DeleteMe.cs" />
     <Compile Include="Models\NetzalistDb.cs" />
     <Compile Include="Models\Tenant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -294,6 +300,11 @@
     <Content Include="Views\Tenant\Create.cshtml" />
     <Content Include="Views\Tenant\Edit.cshtml" />
     <Content Include="Views\Tenant\Delete.cshtml" />
+    <Content Include="Views\DeleteMe\Index.cshtml" />
+    <Content Include="Views\DeleteMe\Details.cshtml" />
+    <Content Include="Views\DeleteMe\Create.cshtml" />
+    <Content Include="Views\DeleteMe\Edit.cshtml" />
+    <Content Include="Views\DeleteMe\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -304,6 +315,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201310131625142_initial.resx">
       <DependentUpon>201310131625142_initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310131634147_DeleteMeAdded.resx">
+      <DependentUpon>201310131634147_DeleteMeAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
