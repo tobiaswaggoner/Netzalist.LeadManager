@@ -11,6 +11,10 @@ namespace Netzalist.LeadManager.Web.Models
 {
     public class NetzalistDb : DbContext
     {
+        public NetzalistDb()
+            : base("DefaultConnection")
+        {
+        }
         public DbSet<Tenant> Tenants { get; set; }
     }
 }
