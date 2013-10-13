@@ -1,24 +1,31 @@
+// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.Linq;
+
 namespace Netzalist.LeadManager.Web.Migrations
 {
     using System;
-    using System.Data.Entity.Migrations;
-    
-    public partial class initial : DbMigration
+
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
             CreateTable(
                 "dbo.Tenants",
                 c => new
-                    {
-                        TenantId = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Street = c.String(),
-                    })
+                {
+                    TenantId = c.Int(false, true),
+                    Name = c.String(),
+                    Street = c.String(),
+                })
                 .PrimaryKey(t => t.TenantId);
-            
         }
-        
+
         public override void Down()
         {
             DropTable("dbo.Tenants");

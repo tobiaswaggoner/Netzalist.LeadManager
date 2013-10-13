@@ -1,38 +1,59 @@
-﻿@model Netzalist.LeadManager.Web.Models.DatabaseMigrationModel
+﻿@using System.Security.Cryptography.X509Certificates
+@model Netzalist.LeadManager.Web.Models.DatabaseMigrationModel
 
 @{
-    ViewBag.Title = "Database Migration";
+    ViewBag.Title = "Database Updates";
 }
 
-<h2>Database Migration</h2>
 
-@if (Model.AllMigrations.Count == 0)
-{
-    <div>Keine Migrations!</div>
-}
-else
-{
-    <div>@Model.AllMigrations.Count Migrations</div>
-    foreach (var
-        nxtChange in Model.AllMigrations)
-    {
-        <div>@nxtChange</div>
-        <div>@Html.ActionLink("Update", "UpdateSpecific", new {migration=nxtChange})</div>
-    }
-}
-<hr/>
+<h2>Database Updates</h2>
+@{ var i = Model.PendingMigrations.Count + Model.AllMigrations.Count; }
+
+<table>
+
 
 @if (Model.PendingMigrations.Count == 0)
 {
-    <div>Keine Pending Migrations!</div>
+    <tr><td colspan="4"><h3>No pending updates</h3></td></tr>
 }
 else
 {
-    <div>@Model.PendingMigrations.Count Pending Migrations</div>
-    foreach (var
-        nxtChange in Model.PendingMigrations)
-    {
-        <div>@nxtChange</div>
-        <div>@Html.ActionLink("Update", "UpdateSpecific", new {migration=nxtChange})</div>
-    }
+    <tr><td colspan="4"><h3>Pending updates: @Model.PendingMigrations.Count</h3></td></tr>
+    
+        foreach (var
+            nxtChange in Model.PendingMigrations.OrderByDescending(item => item.MigrationString))
+        {
+            <tr><td>@i.ToString("000")</td><td>@nxtChange.Date</td><td>@nxtChange.Name</td><td>@Html.ActionLink(" <-- Update to this version ", "UpdateSpecific", new { migration = nxtChange.MigrationString }, new { @class = "applyLink" })</td></tr>
+            i--;
+        }
 }
+
+@if (Model.AllMigrations.Count == 0)
+{
+    <tr><td colspan="4"><h3>No updates in the history</h3></td></tr>
+}
+else
+{
+    var current = @Model.AllMigrations.OrderByDescending(item => item.MigrationString).First();
+        <tr><td colspan="4"><h3>Current database version</h3></td></tr>
+        <tr><td>@i.ToString("000")</td><td>@current.Date</td><td>@current.Name</td><td>&nbsp;</td></tr>
+
+        i--;
+        
+        <tr><td colspan="4"><h3>History: @(Model.AllMigrations.Count-1) updates to rollback</h3></td></tr>
+    
+        var first = true;
+        foreach (var
+            nxtChange in Model.AllMigrations.OrderByDescending(item => item.MigrationString))
+        {
+            if(first)
+            {
+                first = false; 
+                continue;
+            }
+            <tr><td>@i.ToString("000")</td><td>@nxtChange.Date</td><td>@nxtChange.Name</td><td>@Html.ActionLink(" <-- Rollback to this version ", "UpdateSpecific", new { migration = nxtChange.MigrationString }, new { @class = "rollbackLink" })</td></tr>
+            i--;
+        }
+}
+    
+</table>

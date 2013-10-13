@@ -1,9 +1,11 @@
-﻿using System;
+﻿// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Netzalist.LeadManager.Web.Controllers

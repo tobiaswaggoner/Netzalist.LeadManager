@@ -15,5 +15,7 @@ namespace Netzalist.LeadManager.Web.Models
             : base("DefaultConnection")
         {
         }
+
+        public DbSet<UserProfile> UserProfiles { get; set; }
     }
 }

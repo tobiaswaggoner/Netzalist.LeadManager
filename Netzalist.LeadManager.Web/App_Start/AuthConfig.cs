@@ -1,10 +1,12 @@
-﻿using System;
+﻿// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using Microsoft.Web.WebPages.OAuth;
-using Netzalist.LeadManager.Web.Models;
 
+// ReSharper disable once CheckNamespace
 namespace Netzalist.LeadManager.Web
 {
     public static class AuthConfig

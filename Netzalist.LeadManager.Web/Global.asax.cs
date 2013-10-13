@@ -1,13 +1,18 @@
-﻿using System;
+﻿// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Netzalist.LeadManager.Web.Migrations;
+using Netzalist.LeadManager.Web.Models;
 
 
 namespace Netzalist.LeadManager.Web
@@ -15,7 +20,7 @@ namespace Netzalist.LeadManager.Web
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
-    public class MvcApplication : System.Web.HttpApplication
+    public class MvcApplication : HttpApplication
     {
         protected void Application_Start()
         {
@@ -27,7 +32,7 @@ namespace Netzalist.LeadManager.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<Netzalist.LeadManager.Web.Models.NetzalistDb, Netzalist.LeadManager.Web.Migrations.Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<NetzalistDb, Configuration>());
         }
     }
 }

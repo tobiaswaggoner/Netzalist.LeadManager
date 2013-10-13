@@ -5,13 +5,13 @@ namespace Netzalist.LeadManager.Web.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class Initial : IMigrationMetadata
+    public sealed partial class FirstRelease : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FirstRelease));
         
         string IMigrationMetadata.Id
         {
-            get { return "201310131625142_initial"; }
+            get { return "201310132219335_FirstRelease"; }
         }
         
         string IMigrationMetadata.Source

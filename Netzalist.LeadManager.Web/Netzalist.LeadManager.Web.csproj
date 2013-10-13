@@ -180,9 +180,14 @@
     <Compile Include="Migrations\201310131652560_RemovedTestData.Designer.cs">
       <DependentUpon>201310131652560_RemovedTestData.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310132219335_FirstRelease.cs" />
+    <Compile Include="Migrations\201310132219335_FirstRelease.Designer.cs">
+      <DependentUpon>201310132219335_FirstRelease.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\DatabaseMigrationModel.cs" />
+    <Compile Include="Models\Migration.cs" />
     <Compile Include="Models\NetzalistDb.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -244,6 +249,9 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Images\Netzalist_Logo_184x200.png" />
+    <Content Include="Images\Netzalist_Logo_42x100.png" />
+    <Content Include="Images\Netzalist_Logo_42x60.png" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -314,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310131652560_RemovedTestData.resx">
       <DependentUpon>201310131652560_RemovedTestData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310132219335_FirstRelease.resx">
+      <DependentUpon>201310132219335_FirstRelease.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

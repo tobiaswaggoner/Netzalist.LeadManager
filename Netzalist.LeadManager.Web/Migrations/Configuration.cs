@@ -1,18 +1,26 @@
+// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
+using System.Collections.Generic;
+using System.Data.Entity.Migrations;
+using System.Linq;
+using Netzalist.LeadManager.Web.Models;
+
 namespace Netzalist.LeadManager.Web.Migrations
 {
     using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Netzalist.LeadManager.Web.Models.NetzalistDb>
+    internal sealed class Configuration : DbMigrationsConfiguration<NetzalistDb>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Netzalist.LeadManager.Web.Models.NetzalistDb context)
+        protected override void Seed(NetzalistDb context)
         {
             //  This method will be called after migrating to the latest version.
 
