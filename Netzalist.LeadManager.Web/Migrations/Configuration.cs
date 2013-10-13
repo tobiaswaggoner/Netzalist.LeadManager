@@ -1,5 +1,3 @@
-using Netzalist.LeadManager.Web.Models;
-
 namespace Netzalist.LeadManager.Web.Migrations
 {
     using System;
@@ -16,7 +14,18 @@ namespace Netzalist.LeadManager.Web.Migrations
 
         protected override void Seed(Netzalist.LeadManager.Web.Models.NetzalistDb context)
         {
-            context.Tenants.AddOrUpdate(i=>i.Name, new Tenant{Name="Autotenant"});
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data. E.g.
+            //
+            //    context.People.AddOrUpdate(
+            //      p => p.FullName,
+            //      new Person { FullName = "Andrew Peters" },
+            //      new Person { FullName = "Brice Lambson" },
+            //      new Person { FullName = "Rowan Miller" }
+            //    );
+            //
         }
     }
 }

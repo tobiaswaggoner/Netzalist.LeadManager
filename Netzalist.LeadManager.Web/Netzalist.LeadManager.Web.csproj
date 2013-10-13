@@ -168,9 +168,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201310131548462_TenantAdded.cs" />
-    <Compile Include="Migrations\201310131548462_TenantAdded.Designer.cs">
-      <DependentUpon>201310131548462_TenantAdded.cs</DependentUpon>
+    <Compile Include="Migrations\201310131625142_initial.cs" />
+    <Compile Include="Migrations\201310131625142_initial.Designer.cs">
+      <DependentUpon>201310131625142_initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -302,8 +302,8 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201310131548462_TenantAdded.resx">
-      <DependentUpon>201310131548462_TenantAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201310131625142_initial.resx">
+      <DependentUpon>201310131625142_initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

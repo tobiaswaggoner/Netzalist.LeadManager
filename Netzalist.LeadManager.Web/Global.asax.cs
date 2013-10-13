@@ -28,7 +28,6 @@ namespace Netzalist.LeadManager.Web
             AuthConfig.RegisterAuth();
 
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<Netzalist.LeadManager.Web.Models.NetzalistDb, Netzalist.LeadManager.Web.Migrations.Configuration>());
-
         }
     }
 }

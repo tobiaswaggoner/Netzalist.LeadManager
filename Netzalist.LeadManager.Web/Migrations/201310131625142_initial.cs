@@ -3,7 +3,7 @@ namespace Netzalist.LeadManager.Web.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class TenantAdded : DbMigration
+    public partial class initial : DbMigration
     {
         public override void Up()
         {
@@ -13,6 +13,7 @@ namespace Netzalist.LeadManager.Web.Migrations
                     {
                         TenantId = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        Street = c.String(),
                     })
                 .PrimaryKey(t => t.TenantId);
             

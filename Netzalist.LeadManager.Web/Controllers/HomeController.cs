@@ -12,13 +12,8 @@ namespace Netzalist.LeadManager.Web.Controllers
     {
         public ActionResult Index()
         {
-            var migrator = new DbMigrator(new Migrations.Configuration());
-            var result = migrator.GetPendingMigrations().Aggregate("", (current, nxtMigration) => current + (nxtMigration + " "));
-            migrator.Update();
-            
             ViewBag.Message = ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString.Substring(0,
-                20) + result;
-
+                20);
 
             return View();
         }

@@ -11,5 +11,6 @@ namespace Netzalist.LeadManager.Web.Models
         [Key]
         public int TenantId { get; set; }
         public String Name { get; set; }
+        public String Street { get; set; }
     }
 }
