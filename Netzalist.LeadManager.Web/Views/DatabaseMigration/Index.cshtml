@@ -1,0 +1,38 @@
+﻿@model Netzalist.LeadManager.Web.Models.DatabaseMigrationModel
+
+@{
+    ViewBag.Title = "Database Migration";
+}
+
+<h2>Database Migration</h2>
+
+@if (Model.AllMigrations.Count == 0)
+{
+    <div>Keine Migrations!</div>
+}
+else
+{
+    <div>@Model.AllMigrations.Count Migrations</div>
+    foreach (var
+        nxtChange in Model.AllMigrations)
+    {
+        <div>@nxtChange</div>
+    }
+}
+<hr/>
+
+@if (Model.PendingMigrations.Count == 0)
+{
+    <div>Keine Pending Migrations!</div>
+}
+else
+{
+    <div>@Model.PendingMigrations.Count Pending Migrations</div>
+    foreach (var
+        nxtChange in Model.PendingMigrations)
+    {
+        <div>@nxtChange</div>
+    }
+
+    <div>@Html.ActionLink("Aktualisieren", "UpdateNow")</div>
+}
