@@ -15,8 +15,5 @@ namespace Netzalist.LeadManager.Web.Models
             : base("DefaultConnection")
         {
         }
-
-        public DbSet<Tenant> Tenants { get; set; }
-        public DbSet<DeleteMe> DeleteMes { get; set; }
     }
 }
