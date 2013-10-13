@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Netzalist.LeadManager.Web.Models.Test>
+﻿@model IEnumerable<Netzalist.LeadManager.Web.Models.Wow>
 
 @{
     ViewBag.Title = "Index";
@@ -23,9 +23,9 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TestPK }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TestPK }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TestPK })
+            @Html.ActionLink("Edit", "Edit", new { id=item.WowId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WowId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WowId })
         </td>
     </tr>
 }

@@ -26,7 +26,7 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         public ActionResult Details(int id = 0)
         {
-            Test test = _db.Tests.Find(id);
+            Wow test = _db.Tests.Find(id);
             if (test == null)
             {
                 return HttpNotFound();
@@ -46,7 +46,7 @@ namespace Netzalist.LeadManager.Web.Controllers
         // POST: /Default1/Create
 
         [HttpPost]
-        public ActionResult Create(Test test)
+        public ActionResult Create(Wow test)
         {
             if (ModelState.IsValid)
             {
@@ -63,7 +63,7 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         public ActionResult Edit(int id = 0)
         {
-            Test test = _db.Tests.Find(id);
+            Wow test = _db.Tests.Find(id);
             if (test == null)
             {
                 return HttpNotFound();
@@ -75,7 +75,7 @@ namespace Netzalist.LeadManager.Web.Controllers
         // POST: /Default1/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Test test)
+        public ActionResult Edit(Wow test)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         public ActionResult Delete(int id = 0)
         {
-            Test test = _db.Tests.Find(id);
+            Wow test = _db.Tests.Find(id);
             if (test == null)
             {
                 return HttpNotFound();
@@ -105,7 +105,7 @@ namespace Netzalist.LeadManager.Web.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Test test = _db.Tests.Find(id);
+            Wow test = _db.Tests.Find(id);
             _db.Tests.Remove(test);
             _db.SaveChanges();
             return RedirectToAction("Index");

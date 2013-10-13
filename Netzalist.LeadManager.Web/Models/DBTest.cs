@@ -8,6 +8,6 @@ namespace Netzalist.LeadManager.Web.Models
 {
     public class DBTest : DbContext
     {
-        public DbSet<Test> Tests { get; set; }
+        public DbSet<Wow> Tests { get; set; }
     }
 }

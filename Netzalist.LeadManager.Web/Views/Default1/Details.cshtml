@@ -1,4 +1,4 @@
-﻿@model Netzalist.LeadManager.Web.Models.Test
+﻿@model Netzalist.LeadManager.Web.Models.Wow
 
 @{
     ViewBag.Title = "Details";
@@ -15,8 +15,14 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Name)
     </div>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Street)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Street)
+    </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.TestPK }) |
+    @Html.ActionLink("Edit", "Edit", new { id=Model.WowId }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
