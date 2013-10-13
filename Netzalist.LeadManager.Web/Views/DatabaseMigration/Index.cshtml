@@ -17,6 +17,7 @@ else
         nxtChange in Model.AllMigrations)
     {
         <div>@nxtChange</div>
+        <div>@Html.ActionLink("Update", "UpdateSpecific", new {migration=nxtChange})</div>
     }
 }
 <hr/>
@@ -32,7 +33,6 @@ else
         nxtChange in Model.PendingMigrations)
     {
         <div>@nxtChange</div>
+        <div>@Html.ActionLink("Update", "UpdateSpecific", new {migration=nxtChange})</div>
     }
-
-    <div>@Html.ActionLink("Aktualisieren", "UpdateNow")</div>
 }

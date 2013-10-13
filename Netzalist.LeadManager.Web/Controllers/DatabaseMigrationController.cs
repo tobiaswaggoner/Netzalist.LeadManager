@@ -32,12 +32,18 @@ namespace Netzalist.LeadManager.Web.Controllers
             return model;
         }
 
-        public void UpdateNow()
+        public ActionResult UpdateNow()
         {
             var migrator = new DbMigrator(new Migrations.Configuration());
             migrator.Update();
-            RedirectToAction("Index");
+            return RedirectToAction("Index");
         }
 
+        public ActionResult UpdateSpecific(String migration)
+        {
+            var migrator = new DbMigrator(new Migrations.Configuration());
+            migrator.Update(migration);
+            return RedirectToAction("Index");
+        }
     }
 }
