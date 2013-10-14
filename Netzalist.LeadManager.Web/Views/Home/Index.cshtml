@@ -1,29 +1,59 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Hallo Spatzl";
 }
 
-<h3>We suggest the following:</h3>
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+    <h2>das ist nur ein Technologietest.</h2>
+</hgroup>
+
 <ol class="round">
     <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
+        <h5>Was soll das hier?</h5>
+        <div style="margin-top:10px;">
+            <p>Ich wollte einige (für mich) neue Technologien in der Software Entwicklung
+            und vor allem in der Bereitstellung (also automatische Installation von Servern)
+            in der Cloud testen. Neudeutsch: Deployment. Für Dein angehendes Repertoire an
+            Buzzwords, falls Du einmal über unsere Plattform schwadronieren sollst:</p>
+            <ul class="narrowlist">
+                <li>Plattform wird in C# für .NET 4.5 entwickelt</li>
+                <li>Unsere Systeme werden in der Microsoft Azure Cloud (Azure: sprich: "Äscher") betrieben</li>
+                <li>Das bedeutet: Unbegrenzte Skalierbarkeit. Wenn wir 100.000 Nutzer haben brauchen wir die nur freischalten.</li>
+                <li>Wir entwickeln agil, d.h. das System wird laufend aktualisiert (im Gegensatz zu Updates 1x im Jahr)</li>
+                <li>Mit dieser Basis können wir (rein technisch) sofort Riesenunternehmen weltweit bedienen</li>
+            </ul>
+        </div>
     </li>
 
     <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
+        <h5>Bleibt das so?</h5>
+        <div style="margin-top:10px;">
+            <p>Das hier einmal  wird sowohl die Academy Plattform, als auch das Leadmanagement --> quasi das technische 
+                Herzstück mit dem wir unser Marketing Konzept umsetzen. Im Moment ist das ein vorgefertigtes Template: Weder
+                Layout noch Aussehen hat irgendetwas mit dem späteren Tool zu tun. Es geht nur darum zu evaluieren, ob wir
+                "MVC4" und "Azure" nutzen wollen - und ja: wir wollen!
+            </p>
+            <p>
+                Ach so: Wenn Du auf "Datenbank" oben rechts klickst: Das ist tatsächlich von mir programmiert - gehört auch zum Deployment.
+                Ich wollte testen, ob ich auf Live Systemen wenn es eine neue Programmversion gibt automatisch die Datenbank ändern kann: Ja, man kann!
+            </p>
+        </div>
     </li>
 
     <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
+        <h5>Plan für die Entwicklung</h5>
+        <p>Es gibt mehrere Sachen, die das Portal können sollte, damit wir mit unserem Online Marketing Konzept richtig
+            durchschlagen können:</p>
+        <ul class="narrowlist">
+            <li>Das System soll allgmein Traffic messen und die Ergebnisse darstellen</li>
+            <li>Das System soll tracken, was ein Besucher auf dieser oder einer anderen Seite treibt (jeden einzelnen Klick)</li>
+            <li>Für die Academy Group kommt hier ein Content Management System rein (der Academy Builder) - das ist das was wir schon haben</li>
+            <li>Über Formulare können "Call to actions" eingebaut werden (Bestellen, Registrieren, Angebot anfordern, ...)</li>
+            <li>Sobald der Besucher sich geoutet hat, ist seine vorher anonym gespeicherte Klick Historie verknüpft</li>
+            <li>Man kann ihn dann von hier aus direkt ansprechen (Social Media / Newsletter / Mails)</li>
+            <li>und vertrieblich betreuen (der ehemalige Leadmanager)</li>
+        </ul>
+        <p>Der Gag ist, dass wir alle Informationen vom ersten Klick bis zum Abverkauf zu einem Benutzerprofil verdichten können.</p>
+
     </li>
 </ol>

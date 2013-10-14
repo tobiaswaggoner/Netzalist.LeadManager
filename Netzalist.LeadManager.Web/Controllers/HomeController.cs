@@ -22,14 +22,14 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
+            ViewBag.Message = "Über diese Seite.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Kontakt nicht erwünscht!";
 
             return View();
         }

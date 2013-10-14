@@ -36,6 +36,8 @@ a.applyLink:active, a.applyLink:hover {
     text-decoration: none;
 }
 
+
+
 a:link, a:visited,
 a:active, a:hover { color: #333; }
 
@@ -147,7 +149,7 @@ footer {
 }
 
 #login a {
-    background-color: #d3dce0;
+    background-color: White;
     margin-left: 10px;
     margin-right: 3px;
     padding: 2px 3px;
@@ -270,6 +272,11 @@ ol.round li.seven { background: url("../Images/orderedList7.png") no-repeat; }
 ol.round li.eight { background: url("../Images/orderedList8.png") no-repeat; }
 
 ol.round li.nine { background: url("../Images/orderedList9.png") no-repeat; }
+
+ul.narrowlist li {
+    margin: 0px 0;
+    padding-left: 0px;
+}
 
 /* content */
 
