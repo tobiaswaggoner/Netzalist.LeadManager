@@ -11,10 +11,67 @@
     <li class="one">
         <h5>Was soll das hier?</h5>
         <div style="margin-top:10px;">
+            
+             <section id="bookmarks">
+                 <h2>Direkter Sprung ins Video:</h2>
+                 <br/>
+                <a href="#" onClick="PlayFromBookmark('Start');" >Intro</a> &nbsp;
+                <a href="#" onClick="PlayFromBookmark('Anmeldung');" >Anmeldung an Adwords</a>&nbsp;
+                <a href="#" onClick="PlayFromBookmark('Analyse');" >Keyword Planer starten</a>&nbsp;
+                <a href="#" onClick="PlayFromBookmark('KeyWordsErfassen');" >Keywords erfassen</a>&nbsp;
+                <a href="#" onClick="PlayFromBookmark('ErgebnisAnalysieren');" >Ergebnis analysieren</a>&nbsp;
+                <a href="#" onClick="PlayFromBookmark('Referenz');" >Referenz</a>
+                 <br/> &nbsp;
+            </section>
+
+            <video id="movie" preload controls width="896" height="504" >
+                
+                <source src="http://www.netzalist.de/wp-content/uploads/2013/10/001%20Keywordplanner.mp4" />  
+
+                <object width="896" height="504" type="application/x-shockwave-flash" data="flowplayer-3.2.1.swf">     
+                    <param name="movie" value="flowplayer-3.2.1.swf" />    
+                    <param name="allowfullscreen" value="true" />     
+                    <param name="flashvars" value='config={"clip": {"url": "http://www.netzalist.de/wp-content/uploads/2013/10/001%20Keywordplanner.mp4", 
+                "autoPlay":false, "autoBuffering":true}}' />     
+                    <p>Download video as 
+                        <a href="http://www.netzalist.de/wp-content/uploads/2013/10/001%20Keywordplanner.mp4">MP4</a>, 
+                    </p>  
+                </object>
+            </video>
+            
+ 
+            
+            <script>
+               function PlayFromBookmark(label) {
+                   var videoPlayer = document.getElementById("movie");
+                  switch (label) {
+                      default:
+                         videoPlayer.currentTime = 0;
+                         break;
+                      case "Anmeldung":
+                          videoPlayer.currentTime = 30;
+                          break;
+                      case "Analyse":
+                          videoPlayer.currentTime = 74;
+                          break;
+                      case "KeyWordsErfassen":
+                          videoPlayer.currentTime = 99;
+                          break;
+                      case "ErgebnisAnalysieren":
+                          videoPlayer.currentTime = 173;
+                          break;
+                      case "Referenz":
+                          videoPlayer.currentTime = 278;
+                          break;
+                  }
+                  videoPlayer.play();
+               }    
+            </script>
+
             <p>Ich wollte einige (für mich) neue Technologien in der Software Entwicklung
-            und vor allem in der Bereitstellung (also automatische Installation von Servern)
-            in der Cloud testen. Neudeutsch: Deployment. Für Dein angehendes Repertoire an
-            Buzzwords, falls Du einmal über unsere Plattform schwadronieren sollst:</p>
+                und vor allem in der Bereitstellung (also automatische Installation von Servern)
+                in der Cloud testen. Neudeutsch: Deployment. Für Dein angehendes Repertoire an
+                Buzzwords, falls Du einmal über unsere Plattform schwadronieren sollst:</p>
             <ul class="narrowlist">
                 <li>Plattform wird in C# für .NET 4.5 entwickelt</li>
                 <li>Unsere Systeme werden in der Microsoft Azure Cloud (Azure: sprich: "Äscher") betrieben</li>
