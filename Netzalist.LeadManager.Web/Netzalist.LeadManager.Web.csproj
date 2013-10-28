@@ -161,13 +161,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\DatabaseMigrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="LeadManagerAuthorizeAttribute.cs" />
     <Compile Include="Migrations\201310131625142_initial.cs" />
     <Compile Include="Migrations\201310131625142_initial.Designer.cs">
       <DependentUpon>201310131625142_initial.cs</DependentUpon>
@@ -184,11 +185,42 @@
     <Compile Include="Migrations\201310132219335_FirstRelease.Designer.cs">
       <DependentUpon>201310132219335_FirstRelease.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201310281544029_LogOnUserAdded.cs" />
+    <Compile Include="Migrations\201310281544029_LogOnUserAdded.Designer.cs">
+      <DependentUpon>201310281544029_LogOnUserAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310281615499_RemovedRememberMe.cs" />
+    <Compile Include="Migrations\201310281615499_RemovedRememberMe.Designer.cs">
+      <DependentUpon>201310281615499_RemovedRememberMe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310281643112_TenantAdded.cs" />
+    <Compile Include="Migrations\201310281643112_TenantAdded.Designer.cs">
+      <DependentUpon>201310281643112_TenantAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310281711361_TenantAddedToLogOnUser.cs" />
+    <Compile Include="Migrations\201310281711361_TenantAddedToLogOnUser.Designer.cs">
+      <DependentUpon>201310281711361_TenantAddedToLogOnUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310281736498_AddSession.cs" />
+    <Compile Include="Migrations\201310281736498_AddSession.Designer.cs">
+      <DependentUpon>201310281736498_AddSession.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310281754553_MakeSessionEndRequired.cs" />
+    <Compile Include="Migrations\201310281754553_MakeSessionEndRequired.Designer.cs">
+      <DependentUpon>201310281754553_MakeSessionEndRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201310281801155_RemovedUserProfiles.cs" />
+    <Compile Include="Migrations\201310281801155_RemovedUserProfiles.Designer.cs">
+      <DependentUpon>201310281801155_RemovedUserProfiles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Accounts\LogOnModel.cs" />
+    <Compile Include="Models\Accounts\LogOnUser.cs" />
+    <Compile Include="Models\Accounts\Session.cs" />
     <Compile Include="Models\DatabaseMigrationModel.cs" />
     <Compile Include="Models\Migration.cs" />
     <Compile Include="Models\NetzalistDb.cs" />
+    <Compile Include="Models\Tenants\Tenant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -289,23 +321,13 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\DatabaseMigration\Index.cshtml" />
+    <Content Include="Views\Authentication\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -325,6 +347,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310132219335_FirstRelease.resx">
       <DependentUpon>201310132219335_FirstRelease.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281544029_LogOnUserAdded.resx">
+      <DependentUpon>201310281544029_LogOnUserAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281615499_RemovedRememberMe.resx">
+      <DependentUpon>201310281615499_RemovedRememberMe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281643112_TenantAdded.resx">
+      <DependentUpon>201310281643112_TenantAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281711361_TenantAddedToLogOnUser.resx">
+      <DependentUpon>201310281711361_TenantAddedToLogOnUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281736498_AddSession.resx">
+      <DependentUpon>201310281736498_AddSession.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281754553_MakeSessionEndRequired.resx">
+      <DependentUpon>201310281754553_MakeSessionEndRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201310281801155_RemovedUserProfiles.resx">
+      <DependentUpon>201310281801155_RemovedUserProfiles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

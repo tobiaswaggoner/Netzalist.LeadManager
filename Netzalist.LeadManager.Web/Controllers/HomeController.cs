@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Netzalist.LeadManager.Web.Controllers
 {
+    [LeadManagerAuthorize]
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -20,18 +21,5 @@ namespace Netzalist.LeadManager.Web.Controllers
             return View();
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Über diese Seite.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Kontakt nicht erwünscht!";
-
-            return View();
-        }
     }
 }

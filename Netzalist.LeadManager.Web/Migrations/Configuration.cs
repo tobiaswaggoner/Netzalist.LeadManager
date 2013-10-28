@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Netzalist.LeadManager.Web.Models;
+using Netzalist.LeadManager.Web.Models.Accounts;
+using Netzalist.LeadManager.Web.Models.Tenants;
 
 namespace Netzalist.LeadManager.Web.Migrations
 {
@@ -22,6 +24,10 @@ namespace Netzalist.LeadManager.Web.Migrations
 
         protected override void Seed(NetzalistDb context)
         {
+            var tenant = new Tenant {Name = "Default"};
+            context.Tenants.AddOrUpdate(t=>t.Name, tenant);
+            context.LogOnUsers.AddOrUpdate(u=>u.Name, new LogOnUser { Name = "Test", Password = "Test", Tenant = tenant});
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 

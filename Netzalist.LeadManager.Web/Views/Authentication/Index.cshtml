@@ -1,7 +1,7 @@
-﻿@model Netzalist.LeadManager.Web.Models.LoginModel
+﻿@model Netzalist.LeadManager.Web.Models.Accounts.LogOnModel
 
 @{
-    ViewBag.Title = "Log in";
+    ViewBag.Title = "Anmeldung";
 }
 
 <hgroup class="title">
@@ -9,14 +9,19 @@
 </hgroup>
 
 <section id="loginForm">
-<h2>Use a local account to log in.</h2>
-@using (Html.BeginForm(new {ViewBag.ReturnUrl })) {
+@using (Html.BeginForm(new {ViewBag.ReturnUrl}))
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Log in Form</legend>
         <ol>
+            <li>
+                @Html.LabelFor(m => m.SelectedTenant)
+                @Html.DropDownListFor(m => m.SelectedTenant, new SelectList(Model.Tenants, "TenantId", "Name"))
+                @Html.ValidationMessageFor(m => m.SelectedTenant)
+            </li>
             <li>
                 @Html.LabelFor(m => m.UserName)
                 @Html.TextBoxFor(m => m.UserName)
@@ -29,22 +34,10 @@
             </li>
             <li>
                 @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                @Html.LabelFor(m => m.RememberMe, new {@class = "checkbox"})
             </li>
         </ol>
         <input type="submit" value="Log in" />
     </fieldset>
-    <p>
-        @Html.ActionLink("Register", "Register") if you don't have an account.
-    </p>
 }
 </section>
-
-<section id="socialLoginForm">
-    <h2>Use another service to log in.</h2>
-    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
-</section>
-
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
