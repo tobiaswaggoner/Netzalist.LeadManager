@@ -1,14 +1,15 @@
-﻿using System;
+﻿// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Globalization;
+using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Netzalist.LeadManager.Web.Models;
 using Netzalist.LeadManager.Web.Models.Accounts;
-using WebMatrix.WebData;
 
 namespace Netzalist.LeadManager.Web.Controllers
 {
@@ -19,10 +20,9 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         public ActionResult Index()
         {
-
             var model = new LogOnModel
             {
-                Tenants = (from nxtTenant in new NetzalistDb().Tenants select nxtTenant).ToList()
+                Tenants = (from nxtTenant in NetzalistDb.Instance.Tenants select nxtTenant).ToList()
             };
             return View(model);
         }
@@ -35,27 +35,26 @@ namespace Netzalist.LeadManager.Web.Controllers
             if (!ModelState.IsValid)
             {
                 ModelState.AddModelError("", "Bitte Eingaben überprüfen.");
-                model.Tenants = (from nxtTenant in new NetzalistDb().Tenants select nxtTenant).ToList();
+                model.Tenants = (from nxtTenant in NetzalistDb.Instance.Tenants select nxtTenant).ToList();
                 return View(model);
             }
             if (Authenticate(model)) return RedirectToLocal(returnUrl);
 
             ModelState.AddModelError("", "Benutzername oder Passwort sind nicht korrekt.");
 
-            model.Tenants = (from nxtTenant in new NetzalistDb().Tenants select nxtTenant).ToList();
+            model.Tenants = (from nxtTenant in NetzalistDb.Instance.Tenants select nxtTenant).ToList();
             return View(model);
         }
 
         [LeadManagerAuthorize]
         public ActionResult LogOut()
         {
-            var db = new NetzalistDb();
+            var db = NetzalistDb.Instance;
 
-            var session = (Session)Session["Session"];
+            var session = (Session) Session["Session"];
             session.SessionEnd = DateTime.Now;
             db.Sessions.Attach(session);
-            var entry = db.Entry(session);
-            entry.Property(e => e.SessionEnd).IsModified = true;
+            db.Entry(session).Property(e => e.SessionEnd).IsModified = true;
             db.SaveChanges();
 
             FormsAuthentication.SignOut();
@@ -64,9 +63,15 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         private Boolean Authenticate(LogOnModel model)
         {
-            var db = new NetzalistDb(); 
+            var db = NetzalistDb.Instance;
             var user =
-                db.LogOnUsers.FirstOrDefault(item => item.Name == model.UserName && item.Password == model.Password && item.Tenant.TenantId == model.SelectedTenant);
+                db.LogOnUsers
+                .Where(
+                    item =>
+                        item.Name == model.UserName && item.Password == model.Password &&
+                        item.Tenant.TenantId == model.SelectedTenant)
+                .Include(u=>u.Tenant)
+                .FirstOrDefault();
 
             if (user == null)
                 return false;
@@ -76,7 +81,7 @@ namespace Netzalist.LeadManager.Web.Controllers
             db.SaveChanges();
 
             Session["Session"] = newSession;
-            
+
             FormsAuthentication.SetAuthCookie(user.Name, model.RememberMe);
             return true;
         }
@@ -89,6 +94,5 @@ namespace Netzalist.LeadManager.Web.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

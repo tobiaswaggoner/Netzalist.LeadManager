@@ -25,8 +25,8 @@ namespace Netzalist.LeadManager.Web.Migrations
         protected override void Seed(NetzalistDb context)
         {
             var tenant = new Tenant {Name = "Default"};
-            context.Tenants.AddOrUpdate(t=>t.Name, tenant);
-            context.LogOnUsers.AddOrUpdate(u=>u.Name, new LogOnUser { Name = "Test", Password = "Test", Tenant = tenant});
+            context.Tenants.AddOrUpdate(t => t.Name, tenant);
+            context.LogOnUsers.AddOrUpdate(u=>u.Name, new LogOnUser { Name = "Test", Password = "Test", TenantId = tenant.TenantId});
 
             //  This method will be called after migrating to the latest version.
 

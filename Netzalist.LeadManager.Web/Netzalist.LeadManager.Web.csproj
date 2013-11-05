@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
+    <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DatabaseMigrationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -213,10 +214,35 @@
     <Compile Include="Migrations\201310281801155_RemovedUserProfiles.Designer.cs">
       <DependentUpon>201310281801155_RemovedUserProfiles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311051859212_CompanyAdded.cs" />
+    <Compile Include="Migrations\201311051859212_CompanyAdded.Designer.cs">
+      <DependentUpon>201311051859212_CompanyAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311051909250_MakeSomeFieldsRequired.cs" />
+    <Compile Include="Migrations\201311051909250_MakeSomeFieldsRequired.Designer.cs">
+      <DependentUpon>201311051909250_MakeSomeFieldsRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311051921371_MakeTenantRequired.cs" />
+    <Compile Include="Migrations\201311051921371_MakeTenantRequired.Designer.cs">
+      <DependentUpon>201311051921371_MakeTenantRequired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311052034591_AddExplicitForeignKeyToCompany.cs" />
+    <Compile Include="Migrations\201311052034591_AddExplicitForeignKeyToCompany.Designer.cs">
+      <DependentUpon>201311052034591_AddExplicitForeignKeyToCompany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311052037384_AddExplicitForeignKeyToCompany2.cs" />
+    <Compile Include="Migrations\201311052037384_AddExplicitForeignKeyToCompany2.Designer.cs">
+      <DependentUpon>201311052037384_AddExplicitForeignKeyToCompany2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311052041326_AddExplicitForeignKeyToLogOnUser.cs" />
+    <Compile Include="Migrations\201311052041326_AddExplicitForeignKeyToLogOnUser.Designer.cs">
+      <DependentUpon>201311052041326_AddExplicitForeignKeyToLogOnUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Accounts\LogOnModel.cs" />
     <Compile Include="Models\Accounts\LogOnUser.cs" />
     <Compile Include="Models\Accounts\Session.cs" />
+    <Compile Include="Models\Leads\Company.cs" />
     <Compile Include="Models\DatabaseMigrationModel.cs" />
     <Compile Include="Models\Migration.cs" />
     <Compile Include="Models\NetzalistDb.cs" />
@@ -328,6 +354,11 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\DatabaseMigration\Index.cshtml" />
     <Content Include="Views\Authentication\Index.cshtml" />
+    <Content Include="Views\Company\Index.cshtml" />
+    <Content Include="Views\Company\Details.cshtml" />
+    <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Company\Edit.cshtml" />
+    <Content Include="Views\Company\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -368,6 +399,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201310281801155_RemovedUserProfiles.resx">
       <DependentUpon>201310281801155_RemovedUserProfiles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311051859212_CompanyAdded.resx">
+      <DependentUpon>201311051859212_CompanyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311051909250_MakeSomeFieldsRequired.resx">
+      <DependentUpon>201311051909250_MakeSomeFieldsRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311051921371_MakeTenantRequired.resx">
+      <DependentUpon>201311051921371_MakeTenantRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311052034591_AddExplicitForeignKeyToCompany.resx">
+      <DependentUpon>201311052034591_AddExplicitForeignKeyToCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311052037384_AddExplicitForeignKeyToCompany2.resx">
+      <DependentUpon>201311052037384_AddExplicitForeignKeyToCompany2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311052041326_AddExplicitForeignKeyToLogOnUser.resx">
+      <DependentUpon>201311052041326_AddExplicitForeignKeyToLogOnUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
