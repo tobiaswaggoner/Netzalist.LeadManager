@@ -6,9 +6,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using Netzalist.LeadManager.Web.DataAccess;
 using Netzalist.LeadManager.Web.Models;
-using Netzalist.LeadManager.Web.Models.Accounts;
-using Netzalist.LeadManager.Web.Models.Tenants;
+using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
+using Netzalist.LeadManager.Web.Models.DataModels.Tenants;
 
 namespace Netzalist.LeadManager.Web.Migrations
 {

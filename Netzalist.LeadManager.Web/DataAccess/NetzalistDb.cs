@@ -6,16 +6,17 @@ using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Threading;
 using System.Web;
-using Netzalist.LeadManager.Web.Models.Accounts;
-using Netzalist.LeadManager.Web.Models.Leads;
-using Netzalist.LeadManager.Web.Models.Tenants;
+using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
+using Netzalist.LeadManager.Web.Models.DataModels.Leads;
+using Netzalist.LeadManager.Web.Models.DataModels.Tenants;
 
-namespace Netzalist.LeadManager.Web.Models
+namespace Netzalist.LeadManager.Web.DataAccess
 {
     public class NetzalistDb : DbContext
     {
+        [ThreadStatic] private static NetzalistDb _instance;
+
         public NetzalistDb()
             : base("DefaultConnection")
         {
@@ -30,9 +31,6 @@ namespace Netzalist.LeadManager.Web.Models
         public DbSet<Company> Companies { get; set; }
 
 
-        [ThreadStaticAttribute] 
-        private static NetzalistDb _instance;
-
         public static NetzalistDb Instance
         {
             get
@@ -40,7 +38,7 @@ namespace Netzalist.LeadManager.Web.Models
                 // *** Create a unique Key for the Web Request/Context 
                 String key = null;
 
-                NetzalistDb context = null;
+                NetzalistDb context;
 
                 if (HttpContext.Current != null)
                 {

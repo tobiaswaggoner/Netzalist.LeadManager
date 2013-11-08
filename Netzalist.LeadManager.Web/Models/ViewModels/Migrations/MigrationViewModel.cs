@@ -1,11 +1,14 @@
-﻿using System;
+﻿// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace Netzalist.LeadManager.Web.Models
+namespace Netzalist.LeadManager.Web.Models.ViewModels.Migrations
 {
-    public class Migration
+    public class MigrationViewModel
     {
         public String MigrationString { get; set; }
 
@@ -14,9 +17,7 @@ namespace Netzalist.LeadManager.Web.Models
             get
             {
                 if (String.IsNullOrEmpty(MigrationString)) return MigrationString;
-                if (MigrationString.Length < 17) return MigrationString;
-
-                return MigrationString.Substring(16);
+                return MigrationString.Length < 17 ? MigrationString : MigrationString.Substring(16);
             }
         }
 

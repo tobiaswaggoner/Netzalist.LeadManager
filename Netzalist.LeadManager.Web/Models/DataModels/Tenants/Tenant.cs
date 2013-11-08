@@ -1,9 +1,12 @@
-﻿using System;
+﻿// *********************************************************************
+// (c) 2013 Rope Development
+// *********************************************************************
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
-namespace Netzalist.LeadManager.Web.Models.Tenants
+namespace Netzalist.LeadManager.Web.Models.DataModels.Tenants
 {
     public class Tenant
     {

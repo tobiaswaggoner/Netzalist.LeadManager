@@ -7,9 +7,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Netzalist.LeadManager.Web.Models.Tenants;
+using Netzalist.LeadManager.Web.Models.DataModels.Tenants;
 
-namespace Netzalist.LeadManager.Web.Models.Accounts
+namespace Netzalist.LeadManager.Web.Models.DataModels.Accounts
 {
     public class LogOnUser
     {

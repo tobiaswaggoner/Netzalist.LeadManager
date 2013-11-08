@@ -1,4 +1,4 @@
-﻿@model Netzalist.LeadManager.Web.Models.Accounts.LogOnModel
+﻿@model Netzalist.LeadManager.Web.Models.ViewModels.Accounts.LogOnViewModel
 
 @{
     ViewBag.Title = "Anmeldung";
@@ -15,7 +15,7 @@
     @Html.ValidationSummary(true)
 
     <fieldset>
-        <legend>Log in Form</legend>
+        <legend>Anmelde Formular</legend>
         <ol>
             <li>
                 @Html.LabelFor(m => m.SelectedTenant)
@@ -37,7 +37,7 @@
                 @Html.LabelFor(m => m.RememberMe, new {@class = "checkbox"})
             </li>
         </ol>
-        <input type="submit" value="Log in" />
+        <input type="submit" value="Anmelden" />
     </fieldset>
 }
 </section>

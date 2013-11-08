@@ -8,7 +8,7 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web.Mvc;
 using Netzalist.LeadManager.Web.Migrations;
-using Netzalist.LeadManager.Web.Models;
+using Netzalist.LeadManager.Web.Models.ViewModels.Migrations;
 
 namespace Netzalist.LeadManager.Web.Controllers
 {
@@ -23,20 +23,20 @@ namespace Netzalist.LeadManager.Web.Controllers
             return View(model);
         }
 
-        private static DatabaseMigrationModel PopulateModel()
+        private static DatabaseMigrationViewModel PopulateModel()
         {
             var migrator = new DbMigrator(new Configuration());
-            var model = new DatabaseMigrationModel
+            var model = new DatabaseMigrationViewModel
             {
-                PendingMigrations = new List<Migration>(),
-                AllMigrations = new List<Migration>()
+                PendingMigrations = new List<MigrationViewModel>(),
+                AllMigrations = new List<MigrationViewModel>()
             };
 
             foreach (var nxtChange in migrator.GetPendingMigrations())
-                model.PendingMigrations.Add(new Migration{MigrationString = nxtChange});
+                model.PendingMigrations.Add(new MigrationViewModel {MigrationString = nxtChange});
 
             foreach (var nxtChange in migrator.GetDatabaseMigrations())
-                model.AllMigrations.Add(new Migration{MigrationString = nxtChange});
+                model.AllMigrations.Add(new MigrationViewModel {MigrationString = nxtChange});
             return model;
         }
 

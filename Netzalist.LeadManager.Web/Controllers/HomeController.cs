@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Web.Mvc;
+using Netzalist.LeadManager.Web.Common;
 
 namespace Netzalist.LeadManager.Web.Controllers
 {

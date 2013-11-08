@@ -1,96 +1,42 @@
-﻿@model IEnumerable<Netzalist.LeadManager.Web.Models.Leads.Company>
+﻿@model IList<Netzalist.LeadManager.Web.Models.DataModels.Leads.Company>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Firmen verwalten";
 }
 
-<h2>Index</h2>
+<h2>Firmen verwalten</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Street)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HouseNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Region)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CountryCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Phone)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Fax)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Website)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Street)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HouseNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ZipCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Region)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountryCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Fax)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Website)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreationDate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CompanyId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CompanyId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CompanyId })
-        </td>
-    </tr>
-}
+<div style="text-align: right; padding-right:30px;">
+    @Html.ActionLink(" ", "Create", null, new { @class="link-addlink", @title="Neue Firma anlegen"})
+</div>
+<div style="background-color: white; padding:2px 5px 5px 10px; -ms-border-radius: 10px; border-radius: 10px;">
+<table style="width:100%;">
+    @for(int i=0; i<Model.Count(); i++)
+    {
+        var item = Model[i];
+        <tr>
+            <td class="address-text" style="width:1px; white-space: nowrap;">
+                <span >@Html.ActionLink(item.Name, "Edit", new { id=item.CompanyId }, new { @class="address-company", @title="Bearbeiten"})</span> <br/>
+                @Html.DisplayFor(modelItem => item.Street) @Html.DisplayFor(modelItem => item.HouseNumber)<br/>
+                @Html.DisplayFor(modelItem => item.ZipCode)  @Html.DisplayFor(modelItem => item.City)<br/>
+                @Html.DisplayFor(modelItem => item.Region) - @Html.DisplayFor(modelItem => item.CountryCode)
+            </td>
+            <td class="phone-text" style="width:1px; white-space: nowrap;">
+                @Html.DisplayFor(modelItem => item.Phone) <br/>
+                @Html.DisplayFor(modelItem => item.Fax) <br/>
+                <a href="http://@Html.DisplayFor(modelItem => item.Website)">@Html.DisplayFor(modelItem => item.Website)</a> <br/>
+                <a href="mailto://@Html.DisplayFor(modelItem => item.Email)">@Html.DisplayFor(modelItem => item.Email)</a> <br/>
+            </td>
+            <td style="vertical-align:central; text-align: right;">
+                @Html.ActionLink(" ", "Edit", new { id=item.CompanyId }, new {@class="link-editlink" , title="Bearbeiten"})
+                @Html.ActionLink(" ", "Delete", new { id=item.CompanyId }, new {@class="link-deletelink", title="Löschen"})
+            </td>
+        </tr>
+        if (i < Model.Count-1)
+        {
+            <tr><td colspan="3" style="height: 1px; border-top: rgb(200,200,200) 1px solid;"></td></tr>
+        }
+    }
 
 </table>
+    </div>

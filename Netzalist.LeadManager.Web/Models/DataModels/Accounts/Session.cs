@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Web;
 
-namespace Netzalist.LeadManager.Web.Models.Accounts
+namespace Netzalist.LeadManager.Web.Models.DataModels.Accounts
 {
     public class Session
     {

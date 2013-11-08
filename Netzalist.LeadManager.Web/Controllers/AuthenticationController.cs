@@ -8,8 +8,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
-using Netzalist.LeadManager.Web.Models;
-using Netzalist.LeadManager.Web.Models.Accounts;
+using Netzalist.LeadManager.Web.Common;
+using Netzalist.LeadManager.Web.DataAccess;
+using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
+using Netzalist.LeadManager.Web.Models.ViewModels.Accounts;
 
 namespace Netzalist.LeadManager.Web.Controllers
 {
@@ -20,7 +22,7 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         public ActionResult Index()
         {
-            var model = new LogOnModel
+            var model = new LogOnViewModel
             {
                 Tenants = (from nxtTenant in NetzalistDb.Instance.Tenants select nxtTenant).ToList()
             };
@@ -30,7 +32,7 @@ namespace Netzalist.LeadManager.Web.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(LogOnModel model, string returnUrl)
+        public ActionResult Index(LogOnViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
             {
@@ -61,17 +63,17 @@ namespace Netzalist.LeadManager.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        private Boolean Authenticate(LogOnModel model)
+        private Boolean Authenticate(LogOnViewModel model)
         {
             var db = NetzalistDb.Instance;
             var user =
                 db.LogOnUsers
-                .Where(
-                    item =>
-                        item.Name == model.UserName && item.Password == model.Password &&
-                        item.Tenant.TenantId == model.SelectedTenant)
-                .Include(u=>u.Tenant)
-                .FirstOrDefault();
+                    .Where(
+                        item =>
+                            item.Name == model.UserName && item.Password == model.Password &&
+                            item.Tenant.TenantId == model.SelectedTenant)
+                    .Include(u => u.Tenant)
+                    .FirstOrDefault();
 
             if (user == null)
                 return false;

@@ -7,9 +7,10 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Web.Mvc;
-using Netzalist.LeadManager.Web.Models;
-using Netzalist.LeadManager.Web.Models.Accounts;
-using Netzalist.LeadManager.Web.Models.Leads;
+using Netzalist.LeadManager.Web.Common;
+using Netzalist.LeadManager.Web.DataAccess;
+using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
+using Netzalist.LeadManager.Web.Models.DataModels.Leads;
 
 namespace Netzalist.LeadManager.Web.Controllers
 {

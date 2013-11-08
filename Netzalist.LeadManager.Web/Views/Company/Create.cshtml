@@ -1,4 +1,4 @@
-﻿@model Netzalist.LeadManager.Web.Models.Leads.Company
+﻿@model Netzalist.LeadManager.Web.Models.DataModels.Leads.Company
 
 @{
     ViewBag.Title = "Create";
@@ -12,90 +12,90 @@
     <fieldset>
         <legend>Company</legend>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.Name)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.Name)
             @Html.ValidationMessageFor(model => model.Name)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.Street)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.Street)
             @Html.ValidationMessageFor(model => model.Street)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.HouseNumber)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.HouseNumber)
             @Html.ValidationMessageFor(model => model.HouseNumber)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.ZipCode)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.ZipCode)
             @Html.ValidationMessageFor(model => model.ZipCode)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.City)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.City)
             @Html.ValidationMessageFor(model => model.City)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.Region)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.Region)
             @Html.ValidationMessageFor(model => model.Region)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.CountryCode)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.CountryCode)
             @Html.ValidationMessageFor(model => model.CountryCode)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.Phone)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.Phone)
             @Html.ValidationMessageFor(model => model.Phone)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.Fax)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.Fax)
             @Html.ValidationMessageFor(model => model.Fax)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.Website)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.Website)
             @Html.ValidationMessageFor(model => model.Website)
         </div>
 
-        <div class="editor-label">
+        <div>
             @Html.LabelFor(model => model.Email)
         </div>
-        <div class="editor-field">
+        <div>
             @Html.EditorFor(model => model.Email)
             @Html.ValidationMessageFor(model => model.Email)
         </div>
