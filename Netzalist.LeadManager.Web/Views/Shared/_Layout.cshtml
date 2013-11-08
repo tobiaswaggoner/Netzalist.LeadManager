@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Reflection
+@using Netzalist.LeadManager.Web.Models.DataModels.Accounts
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -42,7 +44,7 @@
         <footer>
             <div class="content-wrapper">
                 <div class="float-left">
-                    <p>&copy; @DateTime.Now.Year - netzalist Ltd.&amp;Co.KG - Juliane Waggoner</p>
+                    <p>&copy; @DateTime.Now.Year - netzalist gmbh &amp; co. kg. - Version @Assembly.GetAssembly(typeof(LogOnUser)).GetName().Version.ToString() &nbsp; ( @File.GetCreationTime(Assembly.GetExecutingAssembly().Location).ToShortDateString() )</p>
                 </div>
             </div>
         </footer>

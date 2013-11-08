@@ -18,11 +18,6 @@
         <legend>Anmelde Formular</legend>
         <ol>
             <li>
-                @Html.LabelFor(m => m.SelectedTenant)
-                @Html.DropDownListFor(m => m.SelectedTenant, new SelectList(Model.Tenants, "TenantId", "Name"))
-                @Html.ValidationMessageFor(m => m.SelectedTenant)
-            </li>
-            <li>
                 @Html.LabelFor(m => m.UserName)
                 @Html.TextBoxFor(m => m.UserName)
                 @Html.ValidationMessageFor(m => m.UserName)
@@ -33,8 +28,9 @@
                 @Html.ValidationMessageFor(m => m.Password)
             </li>
             <li>
-                @Html.CheckBoxFor(m => m.RememberMe)
-                @Html.LabelFor(m => m.RememberMe, new {@class = "checkbox"})
+                <i>Mandant (Optional)</i><br/>
+                @Html.DropDownListFor(m => m.SelectedTenant, new SelectList(Model.Tenants, "TenantId", "Name"), new { style = "width: 260px; font-size:10px;" })
+                @Html.ValidationMessageFor(m => m.SelectedTenant)
             </li>
         </ol>
         <input type="submit" value="Anmelden" />

@@ -1,0 +1,111 @@
+﻿@model Netzalist.LeadManager.Web.Models.DataModels.Leads.Company
+
+@Html.HiddenFor(model => model.CompanyId)
+@Html.HiddenFor(model => model.TenantId)
+@Html.HiddenFor(model => model.CreatedByUserId)
+@Html.HiddenFor(model => model.CreationDate)
+
+<table>
+    <tr>
+        <td>
+             <div class="image-company">&nbsp;</div>
+        </td>
+        <td>
+            <h2 style="padding-bottom:20px;">@Html.Raw(Model==null ? "Neuer Kunde" : Model.Name)</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Name)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.Name)
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.Name)
+        </td>
+
+    </tr>  
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Street)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Street, new {style="width:235px;"}) @Html.TextBoxFor(model => model.HouseNumber, new {style="width:50px;"})
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.Street)
+            @Html.ValidationMessageFor(model => model.HouseNumber)
+        </td>
+    </tr>   
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.City)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.ZipCode, new {style="width:50px;"}) @Html.TextBoxFor(model => model.City, new {style="width:235px;"})
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.ZipCode)
+            @Html.ValidationMessageFor(model => model.City)
+        </td>
+    </tr>  
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.CountryCode)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Region, new {style="width:140px;"}) @Html.TextBoxFor(model => model.CountryCode, new {style="width:145px;"})
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.Region)
+            @Html.ValidationMessageFor(model => model.CountryCode)
+        </td>
+    </tr>  
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Phone)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Phone)
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.Phone)
+        </td>
+    </tr> 
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Fax)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Fax)
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.Fax)
+        </td>
+    </tr>   
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Website)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Website)
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.Website)
+        </td>
+    </tr>      
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.Email)
+        </td>
+        <td>
+            @Html.TextBoxFor(model => model.Email)
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.Email)
+        </td>
+    </tr> 
+
+</table>
+

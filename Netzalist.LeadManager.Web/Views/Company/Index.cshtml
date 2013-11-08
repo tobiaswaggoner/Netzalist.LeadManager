@@ -4,12 +4,20 @@
     ViewBag.Title = "Firmen verwalten";
 }
 
-<h2>Firmen verwalten</h2>
+<table style="width:100%">
+    <tr>
+        <td>
+            <h2>Firmen verwalten</h2>
+        </td>
+        <td style="text-align: right; padding-right:45px;">
+                @Html.ActionLink(" ", "Create", null, new { @class="link-addlink", @title="Neue Firma anlegen"})
+        </td>
+    </tr>
 
-<div style="text-align: right; padding-right:30px;">
-    @Html.ActionLink(" ", "Create", null, new { @class="link-addlink", @title="Neue Firma anlegen"})
-</div>
-<div style="background-color: white; padding:2px 5px 5px 10px; -ms-border-radius: 10px; border-radius: 10px;">
+</table>
+
+    
+<div style="background-color: white; padding:10px 15px 25px 25px; -ms-border-radius: 10px; border-radius: 10px;  ">
 <table style="width:100%;">
     @for(int i=0; i<Model.Count(); i++)
     {
@@ -34,7 +42,8 @@
         </tr>
         if (i < Model.Count-1)
         {
-            <tr><td colspan="3" style="height: 1px; border-top: rgb(200,200,200) 1px solid;"></td></tr>
+            <tr><td colspan="3" style="height: 10px; border-bottom: rgb(200,200,200) 1px solid;"></td></tr>
+            <tr><td colspan="3" style="height: 10px;"></td></tr>
         }
     }
 

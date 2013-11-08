@@ -24,17 +24,27 @@ namespace Netzalist.LeadManager.Web.Models.DataModels.Leads
 
         [Required(AllowEmptyStrings = false)]
         [MinLength(3)]
+        [Display(Name = "Name")]
         public String Name { get; set; }
-
+        [Display(Name = "Straße")]
         public String Street { get; set; }
+        [Display(Name = "HNr")]
         public String HouseNumber { get; set; }
+        [Display(Name = "PLZ")]
         public String ZipCode { get; set; }
+        [Display(Name = "Ort")]
         public String City { get; set; }
+        [Display(Name = "Region")]
         public String Region { get; set; }
+        [Display(Name = "Land")]
         public String CountryCode { get; set; }
+        [Display(Name = "Telefon")]
         public String Phone { get; set; }
+        [Display(Name = "Fax")]
         public String Fax { get; set; }
+        [Display(Name = "Website")]
         public String Website { get; set; }
+        [Display(Name = "EMail")]
         public String Email { get; set; }
 
         [Required]

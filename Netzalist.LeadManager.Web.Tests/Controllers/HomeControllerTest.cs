@@ -4,8 +4,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
+using AE.Net.Mail;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Netzalist.LeadManager.Web.Controllers;
 
@@ -17,14 +19,29 @@ namespace Netzalist.LeadManager.Web.Tests.Controllers
         [TestMethod]
         public void Index()
         {
-            // Arrange
-            var controller = new HomeController();
+            using (var imap = new AE.Net.Mail.ImapClient("imap.gmail.com", "tobias.waggoner@gmail.com", "pass632274", AE.Net.Mail.ImapClient.AuthMethods.Login, 993, true))
+            {
+                var listMailboxes = imap.ListMailboxes(string.Empty, "*");
 
-            // Act
-            var result = controller.Index() as ViewResult;
+                foreach (var listMailbox in listMailboxes)
+                    Debug.WriteLine(listMailbox.Name);
 
-            // Assert
-            Assert.AreEqual("Modify this template to jump-start your ASP.NET MVC application.", result.ViewBag.Message);
+                imap.SelectMailbox("[Google Mail]/All Mail");
+                var messages = imap.GetMessageCount();
+
+
+                var selection = imap.SearchMessages(SearchCondition.SentSince(DateTime.Today));
+                foreach (var msg in selection)
+                {
+                    Debug.WriteLine(msg.Value.Uid + "<From: " + msg.Value.From + "> <To:" +msg.Value.To.ToList()[0].Address + "> " +  msg.Value.Subject);
+                    
+                    if(msg.Value.Attachments.Count>0)
+                        foreach (var attachment in msg.Value.Attachments)
+                            Debug.WriteLine("   " + attachment.ContentType + ": " + attachment.Filename);
+                }
+
+                imap.Disconnect();
+            }
         }
 
 
