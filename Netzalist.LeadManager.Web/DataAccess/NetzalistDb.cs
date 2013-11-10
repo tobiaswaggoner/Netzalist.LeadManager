@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
+using Netzalist.LeadManager.Web.Models.DataModels.EMail;
 using Netzalist.LeadManager.Web.Models.DataModels.Leads;
 using Netzalist.LeadManager.Web.Models.DataModels.Tenants;
 
@@ -30,6 +31,11 @@ namespace Netzalist.LeadManager.Web.DataAccess
 
         public DbSet<Company> Companies { get; set; }
 
+        public DbSet<MailMessage> MailMessages { get; set; }
+
+        public DbSet<MailAddress> MailAddresses { get; set; }
+
+        public DbSet<MailRecipient> MailRecipients { get; set; }
 
         public static NetzalistDb Instance
         {

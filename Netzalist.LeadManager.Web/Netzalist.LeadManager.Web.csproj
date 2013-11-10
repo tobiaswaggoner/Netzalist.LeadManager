@@ -240,7 +240,17 @@
     <Compile Include="Migrations\201311052041326_AddExplicitForeignKeyToLogOnUser.Designer.cs">
       <DependentUpon>201311052041326_AddExplicitForeignKeyToLogOnUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311101026183_EMailSupportWithoutAttachments.cs" />
+    <Compile Include="Migrations\201311101026183_EMailSupportWithoutAttachments.Designer.cs">
+      <DependentUpon>201311101026183_EMailSupportWithoutAttachments.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DataModels\EMail\MailAddress.cs" />
+    <Compile Include="Models\DataModels\EMail\MailFlags.cs" />
+    <Compile Include="Models\DataModels\EMail\MailMessage.cs" />
+    <Compile Include="Models\DataModels\EMail\MailPriority.cs" />
+    <Compile Include="Models\DataModels\EMail\MailRecipient.cs" />
+    <Compile Include="Models\DataModels\EMail\MailRecipientType.cs" />
     <Compile Include="Models\ViewModels\Accounts\LogOnViewModel.cs" />
     <Compile Include="Models\DataModels\Accounts\LogOnUser.cs" />
     <Compile Include="Models\DataModels\Accounts\Session.cs" />
@@ -427,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311052041326_AddExplicitForeignKeyToLogOnUser.resx">
       <DependentUpon>201311052041326_AddExplicitForeignKeyToLogOnUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101026183_EMailSupportWithoutAttachments.resx">
+      <DependentUpon>201311101026183_EMailSupportWithoutAttachments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

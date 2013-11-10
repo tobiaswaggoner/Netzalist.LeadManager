@@ -34,7 +34,8 @@ namespace Netzalist.LeadManager.Web.Tests.Controllers
                 foreach (var msg in selection)
                 {
                     Debug.WriteLine(msg.Value.Uid + "<From: " + msg.Value.From + "> <To:" +msg.Value.To.ToList()[0].Address + "> " +  msg.Value.Subject);
-                    
+                    MailMessage msg2 = msg.Value;
+
                     if(msg.Value.Attachments.Count>0)
                         foreach (var attachment in msg.Value.Attachments)
                             Debug.WriteLine("   " + attachment.ContentType + ": " + attachment.Filename);
