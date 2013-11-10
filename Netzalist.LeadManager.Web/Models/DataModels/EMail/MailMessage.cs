@@ -11,17 +11,16 @@ namespace Netzalist.LeadManager.Web.Models.DataModels.EMail
 {
     public class MailMessage
     {
-        public int MailMessageId { get; set; }
+        [Key]
+        [Required]
+        public Guid MailMessagePK { get; set; }
 
         [Required]
         public DateTime DateTimeSent { get; set; }
         [Required]
-        public int From { get; set; }
-        [Required]
-        public int Sender { get; set; }
-        public List<MailRecipient> To { get; set; }
-        public List<MailRecipient> CC { get; set; }
-        public List<MailRecipient> BCC { get; set; }
+        public Guid From { get; set; }
+
+        public Guid? Sender { get; set; }
 
         public string Subject { get; set; }
         public string Body { get; set; }

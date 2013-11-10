@@ -6,14 +6,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Netzalist.LeadManager.Web.Models.DataModels.EMail
+namespace Netzalist.LeadManager.Web.Common
 {
-    public enum MailRecipientType
+    public enum SequentialGuidType
     {
-        To = 0,
-        CC = 1,
-        BCC = 2,
-        From = 3,
-        Sender = 4
+        SequentialAsString,
+        SequentialAsBinary,
+        SequentialAtEnd
     }
 }

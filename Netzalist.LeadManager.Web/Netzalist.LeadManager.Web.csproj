@@ -164,6 +164,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\SequentialGuidGenerator.cs" />
+    <Compile Include="Common\SequentialGuidType.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DatabaseMigrationController.cs" />
@@ -243,6 +245,34 @@
     <Compile Include="Migrations\201311101026183_EMailSupportWithoutAttachments.cs" />
     <Compile Include="Migrations\201311101026183_EMailSupportWithoutAttachments.Designer.cs">
       <DependentUpon>201311101026183_EMailSupportWithoutAttachments.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101624550_UseGuidAsPrimaryKeyForMaiilAddress.cs" />
+    <Compile Include="Migrations\201311101624550_UseGuidAsPrimaryKeyForMaiilAddress.Designer.cs">
+      <DependentUpon>201311101624550_UseGuidAsPrimaryKeyForMaiilAddress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101646285_UseGuidAsPrimaryKeyForEMails.cs" />
+    <Compile Include="Migrations\201311101646285_UseGuidAsPrimaryKeyForEMails.Designer.cs">
+      <DependentUpon>201311101646285_UseGuidAsPrimaryKeyForEMails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101703142_CheckForDiff.cs" />
+    <Compile Include="Migrations\201311101703142_CheckForDiff.Designer.cs">
+      <DependentUpon>201311101703142_CheckForDiff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101713333_CheckForDiff1.cs" />
+    <Compile Include="Migrations\201311101713333_CheckForDiff1.Designer.cs">
+      <DependentUpon>201311101713333_CheckForDiff1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101738133_SenderOptional.cs" />
+    <Compile Include="Migrations\201311101738133_SenderOptional.Designer.cs">
+      <DependentUpon>201311101738133_SenderOptional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101742020_CheckForDiff2.cs" />
+    <Compile Include="Migrations\201311101742020_CheckForDiff2.Designer.cs">
+      <DependentUpon>201311101742020_CheckForDiff2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311101745139_CheckForDiff21.cs" />
+    <Compile Include="Migrations\201311101745139_CheckForDiff21.Designer.cs">
+      <DependentUpon>201311101745139_CheckForDiff21.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataModels\EMail\MailAddress.cs" />
@@ -342,7 +372,9 @@
     <Content Include="Scripts\knockout-2.1.0.debug.js" />
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -440,6 +472,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311101026183_EMailSupportWithoutAttachments.resx">
       <DependentUpon>201311101026183_EMailSupportWithoutAttachments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101624550_UseGuidAsPrimaryKeyForMaiilAddress.resx">
+      <DependentUpon>201311101624550_UseGuidAsPrimaryKeyForMaiilAddress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101646285_UseGuidAsPrimaryKeyForEMails.resx">
+      <DependentUpon>201311101646285_UseGuidAsPrimaryKeyForEMails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101703142_CheckForDiff.resx">
+      <DependentUpon>201311101703142_CheckForDiff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101713333_CheckForDiff1.resx">
+      <DependentUpon>201311101713333_CheckForDiff1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101738133_SenderOptional.resx">
+      <DependentUpon>201311101738133_SenderOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101742020_CheckForDiff2.resx">
+      <DependentUpon>201311101742020_CheckForDiff2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311101745139_CheckForDiff21.resx">
+      <DependentUpon>201311101745139_CheckForDiff21.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

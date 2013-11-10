@@ -11,7 +11,9 @@ namespace Netzalist.LeadManager.Web.Models.DataModels.EMail
 {
     public class MailAddress
     {
-        public int MailAddressId { get; set; }
+        [Key]
+        [Required]
+        public Guid MailAddressPK { get; set; }
 
         [Required(AllowEmptyStrings = false)]
         public String Address { get; set; }

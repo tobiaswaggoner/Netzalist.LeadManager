@@ -11,12 +11,14 @@ namespace Netzalist.LeadManager.Web.Models.DataModels.EMail
 {
     public class MailRecipient
     {
-        public int MailRecipientId { get; set; }
+        [Key]
+        [Required]
+        public Guid MailRecipientPK { get; set; }
 
         [Required]
-        public int MailMessageId { get; set; }
+        public Guid MailMessagePK { get; set; }
         [Required]
-        public int RecipientId { get; set; }
+        public Guid RecipientPK { get; set; }
         [Required]
         public MailRecipientType RecipientType { get; set; }
     }
