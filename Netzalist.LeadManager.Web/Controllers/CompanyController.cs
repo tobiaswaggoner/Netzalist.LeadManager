@@ -5,7 +5,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using AE.Net.Mail;
@@ -14,6 +13,8 @@ using Netzalist.LeadManager.Web.DataAccess;
 using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
 using Netzalist.LeadManager.Web.Models.DataModels.EMail;
 using Netzalist.LeadManager.Web.Models.DataModels.Leads;
+using Netzalist.LeadManager.Web.Models.ViewModels.EMail;
+using MailAddress = System.Net.Mail.MailAddress;
 using MailMessage = AE.Net.Mail.MailMessage;
 using MailPriority = Netzalist.LeadManager.Web.Models.DataModels.EMail.MailPriority;
 
@@ -36,13 +37,15 @@ namespace Netzalist.LeadManager.Web.Controllers
                 var imap = new ImapClient("imap.gmail.com", "tobias.waggoner@gmail.com", "pass632274",
                     ImapClient.AuthMethods.Login, 993, true))
             {
-
                 imap.SelectMailbox("[Google Mail]/All Mail");
 
                 var selection = imap.SearchMessages(SearchCondition.SentSince(DateTime.Today.AddDays(-120)));
                 var db = NetzalistDb.Instance;
 
-                foreach (var nxtMsg in selection.Select(msg => msg.Value).Where(nxtMsg => !db.MailMessages.Any(i => i.MessageID == nxtMsg.MessageID)))
+                foreach (
+                    var nxtMsg in
+                        selection.Select(msg => msg.Value)
+                            .Where(nxtMsg => !db.MailMessages.Any(i => i.MessageID == nxtMsg.MessageID)))
                 {
                     AddMessageToDatabase(db, nxtMsg);
                 }
@@ -59,8 +62,8 @@ namespace Netzalist.LeadManager.Web.Controllers
             var newMsg = new Models.DataModels.EMail.MailMessage
             {
                 MailMessagePK = newMessagePK,
-                From =  GetMailAddress(db, nxtMsg.From).MailAddressPK,
-                Sender = nxtMsg.Sender !=null ?  GetMailAddress(db, nxtMsg.Sender).MailAddressPK : (Guid?) null,
+                From = GetMailAddress(db, nxtMsg.From).MailAddressPK,
+                Sender = nxtMsg.Sender != null ? GetMailAddress(db, nxtMsg.Sender).MailAddressPK : (Guid?) null,
                 Subject = nxtMsg.Subject,
                 Body = nxtMsg.Body,
                 ContentType = nxtMsg.ContentType,
@@ -85,7 +88,7 @@ namespace Netzalist.LeadManager.Web.Controllers
             };
             db.MailRecipients.Add(newRecipient);
 
-            if(newMsg.Sender!=null)
+            if (newMsg.Sender != null)
             {
                 newRecipient = new MailRecipient
                 {
@@ -128,7 +131,7 @@ namespace Netzalist.LeadManager.Web.Controllers
             return result;
         }
 
-        private static MailPriority TranslateImportance(AE.Net.Mail.MailPriority  priority)
+        private static MailPriority TranslateImportance(AE.Net.Mail.MailPriority priority)
         {
             if (priority == AE.Net.Mail.MailPriority.High)
                 return MailPriority.High;
@@ -138,7 +141,8 @@ namespace Netzalist.LeadManager.Web.Controllers
             return MailPriority.Normal;
         }
 
-        private static MailRecipient AddRecipient(NetzalistDb db, Guid msgPK, System.Net.Mail.MailAddress nxtAddress, MailRecipientType recipientType)
+        private static void AddRecipient(NetzalistDb db, Guid msgPK, MailAddress nxtAddress,
+            MailRecipientType recipientType)
         {
             var newRecipient = new MailRecipient
             {
@@ -149,16 +153,15 @@ namespace Netzalist.LeadManager.Web.Controllers
                 RecipientPK = GetMailAddress(db, nxtAddress).MailAddressPK
             };
             db.MailRecipients.Add(newRecipient);
-            return newRecipient;
         }
 
-        private static MailAddress GetMailAddress(NetzalistDb db, System.Net.Mail.MailAddress address)
+        private static Models.DataModels.EMail.MailAddress GetMailAddress(NetzalistDb db, MailAddress address)
         {
             var lowerAddress = address.Address.ToLowerInvariant();
             var savedAddress = db.MailAddresses.FirstOrDefault(i => i.Address == lowerAddress);
             if (savedAddress != null) return savedAddress;
 
-            savedAddress = new MailAddress
+            savedAddress = new Models.DataModels.EMail.MailAddress
             {
                 MailAddressPK = SequentialGuidGenerator.NewSequentialGuid(SequentialGuidType.SequentialAtEnd),
                 Address = lowerAddress,
@@ -224,7 +227,90 @@ namespace Netzalist.LeadManager.Web.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.Emails = new List<EmailViewModel>();
+
+            var mailAddress = company.Email == null ? null : company.Email.ToLower();
+            if (mailAddress == null) return View(company);
+            
+            var address = NetzalistDb.Instance.MailAddresses.FirstOrDefault(i => i.Address == mailAddress);
+            if (address == null) return View(company);
+
+            var list = GetAllMailsForMailAddress(address);
+            ViewBag.Emails = list;
+
             return View(company);
+        }
+
+        private List<EmailViewModel> GetAllMailsForMailAddress(Models.DataModels.EMail.MailAddress address)
+        {
+            var mails = (
+                from nxtMsg in NetzalistDb.Instance.MailMessages
+                join nxtRecipient in NetzalistDb.Instance.MailRecipients
+                    on nxtMsg.MailMessagePK equals nxtRecipient.MailMessagePK
+                where
+                    nxtRecipient.RecipientPK == address.MailAddressPK
+                orderby nxtMsg.DateTimeSent descending
+                select nxtMsg).ToList();
+
+            var list = mails.Select(CreateEmailViewModelFromMailMessage).ToList();
+            return list;
+        }
+
+        private EmailViewModel CreateEmailViewModelFromMailMessage(Models.DataModels.EMail.MailMessage nxtMail)
+        {
+            return new EmailViewModel
+            {
+                MailMessagePK = nxtMail.MailMessagePK,
+                Subject = nxtMail.Subject, 
+                Body = nxtMail.Body, 
+                BodyPreview = StripTagsCharArray(nxtMail.Body), 
+                SentDate = nxtMail.DateTimeSent, 
+                From = NetzalistDb.Instance.MailAddresses.Find(nxtMail.From).Address, 
+                To = GetRecipientsList(nxtMail.MailMessagePK, MailRecipientType.To), 
+                ContentType = nxtMail.ContentType
+            };
+        }
+
+        private static string StripTagsCharArray(string source)
+        {
+            var array = new char[source.Length]; 
+            var arrayIndex = 0; 
+            var inside = false;
+            foreach (var @let in source)
+            {
+                if (@let == '<')
+                {
+                    inside = true; continue;
+                }
+                if (@let == '>')
+                {
+                    inside = false; continue;
+                }
+                if (inside) continue;
+
+                array[arrayIndex] = @let; arrayIndex++;
+            } 
+            var result = new string(array, 0, arrayIndex).Replace("\r\n", " ");
+            if (result.Length > 50)
+                return result.Substring(0, 50) + ", [...]";
+   
+            return result;
+
+        }
+
+        private String GetRecipientsList(Guid mailMessagePK, MailRecipientType recipientType)
+        {
+            var list = (
+                from MailRecipient rec in NetzalistDb.Instance.MailRecipients
+                join Models.DataModels.EMail.MailAddress adr in NetzalistDb.Instance.MailAddresses 
+                    on rec.RecipientPK equals adr.MailAddressPK
+                where rec.MailMessagePK == mailMessagePK && rec.RecipientType == recipientType
+                select adr.Address).ToList();
+            var result = list.Count > 0 ? list.Aggregate((current, next) => current + "; " + next) : "";
+            if (result.Length > 50)
+                result = result.Substring(0, 50) + "[...]";
+            return result;
         }
 
         //

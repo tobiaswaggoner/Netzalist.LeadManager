@@ -536,6 +536,14 @@ tr.pager td { padding: 0 0.25em 0 0; }
 
 
 /* Content formats */
+
+.clickableRow {
+    
+}
+
+tr.clickableRow { cursor: pointer;background-color: white;}
+tr.clickableRow:hover { background-color: rgb(200,200,255);}
+
 .address-text {
     background-image: url("../Images/FactoryIcon25x25.png");
     background-repeat: no-repeat;

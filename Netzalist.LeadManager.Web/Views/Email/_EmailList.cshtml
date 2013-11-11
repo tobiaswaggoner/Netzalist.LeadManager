@@ -1,0 +1,34 @@
+﻿@model List<Netzalist.LeadManager.Web.Models.ViewModels.EMail.EmailViewModel>
+
+<table>
+    
+    @{
+        var lastDate = DateTime.MinValue;
+
+        foreach (var nxtMsg in Model)
+        {
+            if (lastDate != nxtMsg.SentDate.Date)
+            {
+                <tr>
+                    <td style="color: dimgray; background-color: rgb(230,230,230); font-weight: bold; font-size: 14px; vertical-align: top; text-align: center; border-bottom: gray 3px solid;" colspan="3">
+                        @Html.Raw(nxtMsg.SentDate.ToShortDateString())
+                    </td>
+                </tr>
+                lastDate = nxtMsg.SentDate.Date;
+            }
+            <tr class='clickableRow' href='@Url.Action("Index", "Email", new{mailMessagePK=nxtMsg.MailMessagePK})'>
+                <td style="color: maroon; vertical-align: top; text-align: left; border-bottom: gray 1px solid; padding-right:2px; width:40px; ">
+                    @nxtMsg.SentDate.ToShortTimeString()
+                </td>
+                <td style="vertical-align: top; border-bottom: gray 1px solid; padding-right:2px; font-size: 12px; ">
+                    <div style="overflow:hidden; width:200px;">
+                        <span style="white-space:nowrap;">@Html.DisplayFor(msg => nxtMsg.From)</span> <br/>
+                        <span style="white-space:nowrap;">-->@Html.DisplayFor(msg => nxtMsg.To)</span> </div>
+                </td>
+                <td style="vertical-align: top; text-align: left; border-bottom: gray 1px solid; white-space:normal; padding:2px; ">
+                    <b>@Html.DisplayFor(msg => nxtMsg.Subject)</b> - <span style="color:gray">@nxtMsg.BodyPreview</span>
+                </td>
+            </tr>
+        }
+    }
+</table>

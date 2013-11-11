@@ -169,6 +169,7 @@
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\DatabaseMigrationController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -285,6 +286,7 @@
     <Compile Include="Models\DataModels\Accounts\LogOnUser.cs" />
     <Compile Include="Models\DataModels\Accounts\Session.cs" />
     <Compile Include="Models\DataModels\Leads\Company.cs" />
+    <Compile Include="Models\ViewModels\EMail\EmailViewModel.cs" />
     <Compile Include="Models\ViewModels\Migrations\DatabaseMigrationViewModel.cs" />
     <Compile Include="Models\ViewModels\Migrations\MigrationViewModel.cs" />
     <Compile Include="DataAccess\NetzalistDb.cs" />
@@ -410,6 +412,8 @@
     <Content Include="Views\Company\Edit.cshtml" />
     <Content Include="Views\Company\Delete.cshtml" />
     <Content Include="Views\Company\_EditCompany.cshtml" />
+    <Content Include="Views\Email\_EmailList.cshtml" />
+    <Content Include="Views\Email\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

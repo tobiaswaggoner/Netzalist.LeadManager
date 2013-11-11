@@ -1,0 +1,9 @@
+﻿@using System.Globalization
+@model Netzalist.LeadManager.Web.Models.ViewModels.EMail.EmailViewModel
+
+
+<div style="padding: 0 0 0 10px; color: maroon; font-weight: bold;">Date: &nbsp; @Model.SentDate.ToShortDateString() @Model.SentDate.ToLongTimeString()</div>
+<div style="padding:0 0 0 10px; color: dimgray; font-weight: bold;">From: &nbsp;@Model.From</div>
+<div style="padding:0 0 0 10px; color: dimgray; font-weight: bold;">To: &nbsp; &nbsp; &nbsp; @Model.To</div>
+<div style="padding:10px; font-weight: bold;">@Model.Subject</div>
+<div style="white-space: pre-line; border-radius:15px; background-color: white; padding: 10px;"> @Model.Body</div>
