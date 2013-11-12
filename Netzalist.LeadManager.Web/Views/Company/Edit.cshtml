@@ -1,4 +1,6 @@
-﻿@using Netzalist.LeadManager.Web.Models.DataModels.EMail
+﻿@using System
+@using System.Collections.Generic
+@using System.Linq
 @model Netzalist.LeadManager.Web.Models.DataModels.Leads.Company
 
 @{
@@ -7,38 +9,62 @@
 
 
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
-        
-        @Html.HiddenFor(model => model.CompanyId)
-        @Html.HiddenFor(model => model.TenantId)
-        @Html.HiddenFor(model => model.CreatedByUserId)
-        @Html.HiddenFor(model => model.CreationDate)
 
-        <fieldset>
-            <legend>Company</legend>
-            <table>
-                <tr>
-                    <td style="vertical-align: top; width:460px; padding: 0">
-                      @{
-                         Html.RenderPartial("~/Views/Company/_EditCompany.cshtml");
+    @Html.HiddenFor(model => model.CompanyId)
+    @Html.HiddenFor(model => model.TenantId)
+    @Html.HiddenFor(model => model.CreatedByUserId)
+    @Html.HiddenFor(model => model.CreationDate)
+
+    <fieldset>
+        <legend>Company</legend>
+        <table>
+            <tr>
+                <td style="padding: 0; vertical-align: top; width: 460px;">
+                    @{
+                        Html.RenderPartial("~/Views/Company/_EditCompany.cshtml");
+                    }
+                    <div style="text-align: right; width: 405px">
+                        <input type="submit" value="Speichern" /><br/>
+                        @Html.ActionLink("Zurück zur Liste", "Index")&nbsp;
+                    </div>
+                </td>
+                <td style="padding: 0; padding-top: 25px; vertical-align: top;">
+                    <h3>Emails</h3>
+                    <div style ="background-color:white; padding:10px; margin-top:25px; padding-bottom:30px; border: solid 1px #e2e2e2; ">
+                        @{
+                            var filter = (List<String>) ViewBag.FilterList;
+                            if (filter != null)
+                            {
+                                for (var index = 0; index < filter.Count; index++)
+                                {
+                                    <span style="white-space: nowrap">
+                                        @{
+                                            var nxtFilter = filter[index];
+                                            @Html.ActionLink(nxtFilter, "Edit", new {id = Model.CompanyId, filter = nxtFilter})
+                                            if (index < filter.Count - 1)
+                                            {
+                                                @Html.Raw(" - ")
+                                            }
+                                        }
+                                    </span>
+                                }
+                            }
                         }
-                        <div style="text-align: right; width:405px">
-                            <input type="submit" value="Speichern" /><br/>
-                            @Html.ActionLink("Zurück zur Liste", "Index")&nbsp;
-                        </div>
-                    </td>
-                    <td style="vertical-align: top; padding: 0; padding-top:25px;">
-                        <h3>Emails</h3>
-                        <div style="max-height: 500px; overflow:auto;">
+
+                    </div>
+                    <div style="background-color:white; padding:10px;  max-height: 500px; overflow: auto; border: solid 1px #e2e2e2;">
+
                         @{
                             Html.RenderPartial("~/Views/Email/_EmailList.cshtml", (object) ViewBag.Emails);
                         }
-                            </div>
-                    </td>
-                </tr>
+                    </div>
+                </td>
+            </tr>
 
-            </table>
+        </table>
 
 
 

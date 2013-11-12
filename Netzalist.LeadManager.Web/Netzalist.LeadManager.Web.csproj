@@ -171,6 +171,15 @@
     <Compile Include="Controllers\DatabaseMigrationController.cs" />
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="DataAccess\ServiceFactory.cs" />
+    <Compile Include="DataAccess\Services\AdministrationService.cs" />
+    <Compile Include="DataAccess\Services\AuthenticationService.cs" />
+    <Compile Include="DataAccess\Services\EmailService.cs" />
+    <Compile Include="DataAccess\Services\IAdministrationService.cs" />
+    <Compile Include="DataAccess\Services\IAuthenticationService.cs" />
+    <Compile Include="DataAccess\Services\IEmailService.cs" />
+    <Compile Include="DataAccess\Services\ILeadService.cs" />
+    <Compile Include="DataAccess\Services\LeadService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

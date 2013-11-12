@@ -16,7 +16,7 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         public ActionResult Index(Guid mailMessagePK)
         {
-            var message = NetzalistDb.Instance.MailMessages.Find(mailMessagePK);
+            var message = ServiceFactory.GetEmailService().GetMessage(mailMessagePK);
             var model = CreateEmailViewModelFromMailMessage(message);
             return View(model);
         }
@@ -29,7 +29,7 @@ namespace Netzalist.LeadManager.Web.Controllers
                 Body = nxtMail.Body,
                 BodyPreview = StripTagsCharArray(nxtMail.Body),
                 SentDate = nxtMail.DateTimeSent,
-                From = NetzalistDb.Instance.MailAddresses.Find(nxtMail.From).Address,
+                From = ServiceFactory.GetEmailService().GetMailAddress(nxtMail.From).Address,
                 To = GetRecipientsList(nxtMail.MailMessagePK, MailRecipientType.To),
                 ContentType = nxtMail.ContentType
             };
@@ -64,12 +64,7 @@ namespace Netzalist.LeadManager.Web.Controllers
 
         private String GetRecipientsList(Guid mailMessagePK, MailRecipientType recipientType)
         {
-            var list = (
-                from MailRecipient rec in NetzalistDb.Instance.MailRecipients
-                join Models.DataModels.EMail.MailAddress adr in NetzalistDb.Instance.MailAddresses
-                    on rec.RecipientPK equals adr.MailAddressPK
-                where rec.MailMessagePK == mailMessagePK && rec.RecipientType == recipientType
-                select adr.Address).ToList();
+            var list = ServiceFactory.GetEmailService().GetListOfMailAddressesForMessage(mailMessagePK, recipientType);
             var result = list.Count > 0 ? list.Aggregate((current, next) => current + "; " + next) : "";
             if (result.Length > 50)
                 result = result.Substring(0, 50) + "[...]";
