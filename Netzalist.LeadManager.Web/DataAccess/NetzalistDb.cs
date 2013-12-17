@@ -37,6 +37,12 @@ namespace Netzalist.LeadManager.Web.DataAccess
 
         public DbSet<MailRecipient> MailRecipients { get; set; }
 
+        public DbSet<Communication> Communications { get; set; }
+
+        public DbSet<Person> Persons { get; set; }
+
+        public DbSet<PersonCommunication> PersonCommunications { get; set; }
+
         public static NetzalistDb Instance
         {
             get

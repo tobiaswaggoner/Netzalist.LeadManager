@@ -14,6 +14,7 @@ using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
 using Netzalist.LeadManager.Web.Models.DataModels.EMail;
 using Netzalist.LeadManager.Web.Models.DataModels.Leads;
 using Netzalist.LeadManager.Web.Models.ViewModels.EMail;
+using Netzalist.LeadManager.Web.Models.ViewModels.Leads;
 using MailAddress = System.Net.Mail.MailAddress;
 using MailMessage = AE.Net.Mail.MailMessage;
 using MailPriority = Netzalist.LeadManager.Web.Models.DataModels.EMail.MailPriority;
@@ -185,12 +186,13 @@ namespace Netzalist.LeadManager.Web.Controllers
         public ActionResult Details(int id = 0)
         {
             var company = NetzalistDb.Instance.Companies.Find(id);
+            var persons = from nxtPerson in NetzalistDb.Instance.Persons select new PersonViewModel(nxtPerson, null);
 
             if (company == null)
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(new CompanyViewModel(company, persons.ToList()));
         }
 
         //
@@ -205,16 +207,21 @@ namespace Netzalist.LeadManager.Web.Controllers
         // POST: /Company/Create
 
         [HttpPost]
-        public ActionResult Create(Company company)
+        public ActionResult Create(CompanyViewModel companyViewModel)
         {
-            ModelState.Clear();
             var session = (Session) Session["Session"];
-            company.CreatedByUserId = session.LogOnUser.LogOnUserId;
-            company.TenantId = session.LogOnUser.Tenant.TenantId;
-            company.CreationDate = DateTime.Now;
+            var company = new Company
+            {
+                CreatedByUserId = session.LogOnUser.LogOnUserId,
+                TenantId = session.LogOnUser.Tenant.TenantId,
+                CreationDate = DateTime.Now
+            };
+            companyViewModel.SyncDataModel(company);
 
+            ModelState.Clear();
             TryValidateModel(company);
-            if (!ModelState.IsValid) return View(company);
+            if (!ModelState.IsValid) return View(companyViewModel);
+
             var db = NetzalistDb.Instance;
             db.Companies.Add(company);
             db.SaveChanges();
@@ -228,24 +235,34 @@ namespace Netzalist.LeadManager.Web.Controllers
         public ActionResult Edit(int id = 0, String filter=null)
         {
             var company = NetzalistDb.Instance.Companies.Find(id);
+            var persons = (from nxtPerson in NetzalistDb.Instance.Persons select nxtPerson).ToList();
 
             if (company == null)
             {
                 return HttpNotFound();
             }
+            var companyViewModel = new CompanyViewModel(company, persons.Select(i=>new PersonViewModel(i, null)).ToList())
+            {
+                ContactToEdit = _contactToEdit
+            };
+            //LoadMails(filter, company, companyViewModel);
 
+            return View(companyViewModel);
+        }
+
+        private void LoadMails(string filter, Company company, CompanyViewModel companyViewModel)
+        {
             ViewBag.Emails = new List<EmailViewModel>();
 
             var mailAddress = company.Email == null ? null : company.Email.ToLower();
-            if (mailAddress == null) return View(company);
-            
+            if (mailAddress == null)
+                return;
+
             var address = NetzalistDb.Instance.MailAddresses.FirstOrDefault(i => i.Address == mailAddress);
-            if (address == null) return View(company);
+            if (address == null)
+                return;
 
-            var list = GetAllMailsForMailAddress(address, filter);
-            ViewBag.Emails = list;
-
-            return View(company);
+            ViewBag.Emails = GetAllMailsForMailAddress(address, filter);
         }
 
 
@@ -330,16 +347,21 @@ namespace Netzalist.LeadManager.Web.Controllers
         // POST: /Company/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(Company company)
+        public ActionResult Edit(CompanyViewModel companyViewModel)
         {
+            var company = NetzalistDb.Instance.Companies.Find(companyViewModel.CompanyId);
+            companyViewModel.SyncDataModel(company);
+            companyViewModel.ContactToEdit = _contactToEdit;
+
             if (ModelState.IsValid)
             {
                 var db = NetzalistDb.Instance;
                 db.Entry(company).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            return View(company);
+            //LoadMails(null, company, companyViewModel);
+
+            return View(companyViewModel);
         }
 
         //
@@ -352,7 +374,7 @@ namespace Netzalist.LeadManager.Web.Controllers
             {
                 return HttpNotFound();
             }
-            return View(company);
+            return View(new CompanyViewModel(company, null));
         }
 
         //
@@ -366,6 +388,20 @@ namespace Netzalist.LeadManager.Web.Controllers
             db.Companies.Remove(company);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        private PersonViewModel _contactToEdit;
+
+        public ActionResult AddContact(int companyId)
+        {
+            _contactToEdit = new PersonViewModel();
+            return RedirectToAction("Edit", new{ id= companyId, filter=(String)null});
+        }
+
+        public ActionResult SaveContact(int companyId)
+        {
+            _contactToEdit = null;
+            return RedirectToAction("Edit", new { id = companyId, filter = (String)null });
         }
     }
 }

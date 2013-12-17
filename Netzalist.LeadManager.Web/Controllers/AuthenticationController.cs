@@ -19,13 +19,14 @@ namespace Netzalist.LeadManager.Web.Controllers
     {
         //
         // GET: /Authentication/
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var model = new LogOnViewModel
             {
                 Tenants = ServiceFactory.GetAdministrationService().GetAllTenants()
             };
+            FormsAuthentication.SignOut(); 
             return View(model);
         }
 

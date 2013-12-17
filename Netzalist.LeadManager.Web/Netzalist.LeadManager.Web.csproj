@@ -284,6 +284,14 @@
     <Compile Include="Migrations\201311101745139_CheckForDiff21.Designer.cs">
       <DependentUpon>201311101745139_CheckForDiff21.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311211013537_personsandcommunicationsadded.cs" />
+    <Compile Include="Migrations\201311211013537_personsandcommunicationsadded.Designer.cs">
+      <DependentUpon>201311211013537_personsandcommunicationsadded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201312041651357_lastchanges.cs" />
+    <Compile Include="Migrations\201312041651357_lastchanges.Designer.cs">
+      <DependentUpon>201312041651357_lastchanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DataModels\EMail\MailAddress.cs" />
     <Compile Include="Models\DataModels\EMail\MailFlags.cs" />
@@ -291,11 +299,18 @@
     <Compile Include="Models\DataModels\EMail\MailPriority.cs" />
     <Compile Include="Models\DataModels\EMail\MailRecipient.cs" />
     <Compile Include="Models\DataModels\EMail\MailRecipientType.cs" />
+    <Compile Include="Models\DataModels\Leads\Communication.cs" />
+    <Compile Include="Models\DataModels\Leads\CommunicationTypes.cs" />
+    <Compile Include="Models\DataModels\Leads\Gender.cs" />
+    <Compile Include="Models\DataModels\Leads\Person.cs" />
+    <Compile Include="Models\DataModels\Leads\PersonCommunication.cs" />
     <Compile Include="Models\ViewModels\Accounts\LogOnViewModel.cs" />
     <Compile Include="Models\DataModels\Accounts\LogOnUser.cs" />
     <Compile Include="Models\DataModels\Accounts\Session.cs" />
     <Compile Include="Models\DataModels\Leads\Company.cs" />
     <Compile Include="Models\ViewModels\EMail\EmailViewModel.cs" />
+    <Compile Include="Models\ViewModels\Leads\CompanyViewModel.cs" />
+    <Compile Include="Models\ViewModels\Leads\PersonViewModel.cs" />
     <Compile Include="Models\ViewModels\Migrations\DatabaseMigrationViewModel.cs" />
     <Compile Include="Models\ViewModels\Migrations\MigrationViewModel.cs" />
     <Compile Include="DataAccess\NetzalistDb.cs" />
@@ -423,10 +438,14 @@
     <Content Include="Views\Company\_EditCompany.cshtml" />
     <Content Include="Views\Email\_EmailList.cshtml" />
     <Content Include="Views\Email\Index.cshtml" />
+    <Content Include="Views\Company\_PersonList.cshtml" />
+    <Content Include="Views\Company\_EditPerson.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\CompanyViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Filters\" />
+    <Folder Include="Views\Shared\DisplayTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -506,6 +525,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311101745139_CheckForDiff21.resx">
       <DependentUpon>201311101745139_CheckForDiff21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311211013537_personsandcommunicationsadded.resx">
+      <DependentUpon>201311211013537_personsandcommunicationsadded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312041651357_lastchanges.resx">
+      <DependentUpon>201312041651357_lastchanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

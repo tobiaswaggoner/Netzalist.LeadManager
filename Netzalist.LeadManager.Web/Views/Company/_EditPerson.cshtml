@@ -1,0 +1,26 @@
+﻿@model Netzalist.LeadManager.Web.Models.ViewModels.Leads.PersonViewModel
+
+@Html.HiddenFor(model => model.PersonPK)
+
+<table>
+    <tr>
+        <td>
+             <div class="image-company">&nbsp;</div>
+        </td>
+        <td>
+            <h2 style="padding-bottom:20px;">@Html.Raw(Model==null ? "Neuer Kontakt" : Model.LastName)</h2>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.LabelFor(model => model.LastName)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.LastName)
+        </td>
+        <td>
+            @Html.ValidationMessageFor(model => model.LastName)
+        </td>
+
+    </tr>  
+</table>

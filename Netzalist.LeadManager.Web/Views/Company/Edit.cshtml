@@ -1,79 +1,69 @@
 ﻿@using System
 @using System.Collections.Generic
 @using System.Linq
-@model Netzalist.LeadManager.Web.Models.DataModels.Leads.Company
+@using System
+@using System.Collections.Generic
+@using System.Linq
+@model Netzalist.LeadManager.Web.Models.ViewModels.Leads.CompanyViewModel
 
 @{
     ViewBag.Title = "Kunde bearbeiten";
 }
+<div class="image-company">&nbsp;</div><h2 style="padding-bottom: 20px;">@Html.DisplayFor(model => model.Name)</h2>
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">Stammdaten</a></li>
+        <li><a href="#tabs-2">Kontakte</a></li>
+        <li><a href="#tabs-3">Historie</a></li>
+    </ul>
+    <div id="tabs-1">
+        @using (Html.BeginForm("Edit", "Company", new AjaxOptions {InsertionMode = InsertionMode.Replace}))
+        {
+            @Html.EditorFor(model => model)
+        }
 
+    </div>
+    <div id="tabs-2">
+        <div class="float-left">
+            <input type="button" class="link-addlink" title="Neuen Kontakt anlegen" id="opener"/>
+            @*@Html.ActionLink(" ", "Create", null, new { @class="link-addlink", @title="Neuen Kontakt anlegen"})*@
+        </div>
+        <div id="dialog" title="Neuer Kontakt">
+            @RenderPage("Create.cshtml")
 
+        </div>
+        @{
+            Html.RenderPartial("~/Views/Company/_PersonList.cshtml", Model.Contacts);
+        }
+    </div>
+    <div id="tabs-3">
+        <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales. Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium. Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+        <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus hendrerit hendrerit.</p>
+    </div>
+</div>
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary(true)
-
-    @Html.HiddenFor(model => model.CompanyId)
-    @Html.HiddenFor(model => model.TenantId)
-    @Html.HiddenFor(model => model.CreatedByUserId)
-    @Html.HiddenFor(model => model.CreationDate)
-
-    <fieldset>
-        <legend>Company</legend>
-        <table>
-            <tr>
-                <td style="padding: 0; vertical-align: top; width: 460px;">
-                    @{
-                        Html.RenderPartial("~/Views/Company/_EditCompany.cshtml");
-                    }
-                    <div style="text-align: right; width: 405px">
-                        <input type="submit" value="Speichern" /><br/>
-                        @Html.ActionLink("Zurück zur Liste", "Index")&nbsp;
-                    </div>
-                </td>
-                <td style="padding: 0; padding-top: 25px; vertical-align: top;">
-                    <h3>Emails</h3>
-                    <div style ="background-color:white; padding:10px; margin-top:25px; padding-bottom:30px; border: solid 1px #e2e2e2; ">
-                        @{
-                            var filter = (List<String>) ViewBag.FilterList;
-                            if (filter != null)
-                            {
-                                for (var index = 0; index < filter.Count; index++)
-                                {
-                                    <span style="white-space: nowrap">
-                                        @{
-                                            var nxtFilter = filter[index];
-                                            @Html.ActionLink(nxtFilter, "Edit", new {id = Model.CompanyId, filter = nxtFilter})
-                                            if (index < filter.Count - 1)
-                                            {
-                                                @Html.Raw(" - ")
-                                            }
-                                        }
-                                    </span>
-                                }
-                            }
-                        }
-
-                    </div>
-                    <div style="background-color:white; padding:10px;  max-height: 500px; overflow: auto; border: solid 1px #e2e2e2;">
-
-                        @{
-                            Html.RenderPartial("~/Views/Email/_EmailList.cshtml", (object) ViewBag.Emails);
-                        }
-                    </div>
-                </td>
-            </tr>
-
-        </table>
-
-
-
-
-
-    </fieldset>
-}
+@Html.ActionLink("Zurück zur Liste", "Index")
 
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function() {
+            $("#dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                show: {
+                    effect: "blind",
+                    duration: 200
+                },
+                hide: {
+                    effect: "explode",
+                    duration: 200
+                }
+            });
+
+            $("#opener").click(function() {
+                $("#dialog").dialog("open");
+            });
+        });
+    </script>
 }

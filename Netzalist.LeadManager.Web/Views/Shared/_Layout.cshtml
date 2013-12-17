@@ -8,34 +8,39 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
         @Scripts.Render("~/bundles/modernizr")
+
     </head>
     <body>
         <header>
-            <div class="content-wrapper">
-                
-                <div class="float-left">
-                     <img src="~/Images/Netzalist_Logo_42x60.png" alt="logo" style="float:left; margin-right:20px; margin-left:8px;" />   
-                     <p class="site-title" style="float:right;">@Html.ActionLink("netzalist - lead manager", "Index", "Home")</p>
-                </div>
-                <div class="float-right">
-                    <section id="login">
-                        @Html.Partial("_LoginPartial")
-                    </section>
-                    @if (Request.IsAuthenticated)
-                    {
-                        <nav>
-                            <ul id="menu">
-                                <li>@Html.ActionLink("Start", "Index", "Home")</li>
-                                <li>@Html.ActionLink("Firmen", "Index", "Company")</li>
-                                <li>@Html.ActionLink("Datenbank", "Index", "DatabaseMigration")</li>
-                            </ul>
-                        </nav>
-                    }
-                </div>
+            <div class="float-left" style="margin-left:15px; margin-top:3px;">
+                    <img src="~/Images/Netzalist_Logo_42x60.png" alt="logo" style="float:left; margin-right:20px; margin-left:8px;" />   
+                    <p class="site-title" style="float:right;">@Html.ActionLink("netzalist - lead manager", "Index", "Home")</p>
             </div>
+            <div class="float-right" style="margin-right: 50px; margin-top:10px;">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+
+            </div>
+
         </header>
         <div id="body">
+            <div style="padding-right: 50px;background-color: rgb(220, 220, 220); min-height: 27px;">
+                <img src="~/Images/accent.png" style="float:left;  margin-left:5px;"/>
+                @if (Request.IsAuthenticated)
+                {
+                    <nav>
+                        <ul id="menu">
+                            <li>@Html.ActionLink("Start", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Firmen", "Index", "Company")</li>
+                            <li>@Html.ActionLink("Datenbank", "Index", "DatabaseMigration")</li>
+                        </ul>
+                    </nav>
+                }
+            </div>
+
             @RenderSection("featured", required: false)
             <section class="content-wrapper main-content clear-fix">
                 @RenderBody()
@@ -49,14 +54,60 @@
             </div>
         </footer>
 
+        <style type="text/css">.delme { }</style>
+        
+
         @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
         @RenderSection("scripts", required: false)
         <script type="text/javascript">
+
+            $( "#tabs" ).tabs();
+
             jQuery(document).ready(function ($) {
-                $(".clickableRow").click(function () {
+
+
+
+                $(".clickableRow").click(function() {
                     window.document.location = $(this).attr("href");
+
                 });
-            });
+
+                $(".delme").click(function () {
+                    if ($(".delme").find("#edit").css("visibility") != "visible") {
+
+                        $(this).find("#display").css("visibility", "collapse");
+                        $(this).find("#edit").css("visibility", "visible");
+                        $(this).find("#edit").find("input").first().focus();
+                    }
+                    
+                });
+                $(".delme").focusout(function () {
+
+                    if ($(".delme").has(":focus").length == 0) {
+
+                        $(this).find("#display").css("visibility", "visible");
+                        $(this).find("#edit").css("visibility", "collapse");
+                        $(this).closest("form").submit();
+                    }
+                });
+                
+                $(".delme").keydown(function (event) {
+ 
+                    if ($(".delme").find("#edit").css("visibility") == "visible") {
+                        if (!((event.which == 115 || event.which == 83) && event.ctrlKey) && !(event.which == 19)) return true;
+                        $(this).find("#display").css("visibility", "visible");
+                        $(this).find("#edit").css("visibility", "collapse");
+                        $(this).closest("form").submit();
+                        event.preventDefault();
+                        return false;
+                    }
+                    return true;
+                });
+
+            })
         </script>
+
     </body>
 </html>

@@ -1,5 +1,5 @@
 ﻿html {
-    background-color: #e2e2e2;
+    background-color: White;
     margin: 0;
     padding: 0;
 }
@@ -8,10 +8,11 @@ body {
     background-color: #fff;
     border-top: solid 10px #000;
     color: #333;
-    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-family: Arial,FreeSans,Helvetica,sans-serif;
     font-size: .85em;
     margin: 0;
     padding: 0;
+
 }
 
 select {
@@ -101,8 +102,8 @@ h5 a:link, h5 a:visited, h5 a:active {
 ----------------------------------------------------------*/
 
 .content-wrapper {
-    margin: 0 auto;
-    max-width: 960px;
+    margin:  10px;
+    /*max-width: 960px;*/
 }
 
 #body {
@@ -112,20 +113,20 @@ h5 a:link, h5 a:visited, h5 a:active {
 }
 
 .main-content {
-    background: url("../Images/accent.png") no-repeat;
+    /*background: url("../Images/accent.png") no-repeat;*/
     padding-left: 10px;
-    padding-top: 30px;
+    /*padding-top: 30px;*/
 }
 
-.featured + .main-content { background: url("../Images/heroAccent.png") no-repeat; }
+/*.featured + .main-content { background: url("../Images/heroAccent.png") no-repeat; }*/
 
 header .content-wrapper { padding-top: 20px; }
 
 footer {
-    background-color: #e2e2e2;
+    background-color: White;
     clear: both;
     font-size: .8em;
-    height: 100px;
+    height: 50px;
 }
 
 
@@ -185,28 +186,34 @@ footer {
 ----------------------------------------------------------*/
 
 ul#menu {
-    font-size: 1.3em;
-    font-weight: 600;
-    margin: 0 0 5px;
+    /*font-size: 1.3em;*/
+    /*font-weight: 600;*/
+    margin: 0;
     padding: 0;
-    text-align: right;
+    padding-top: 6px;
+    text-align: left;
 }
 
 ul#menu li {
+
     display: inline;
     list-style: none;
-    padding-left: 15px;
+    padding: 6px;
+}
+ul#menu li:hover {
+    background-color: white;
 }
 
 ul#menu li a {
     background: none;
-    color: #999;
+    color: #666;
     text-decoration: none;
 }
 
 ul#menu li a:hover {
-    color: #333;
-    text-decoration: none;
+
+    color: #666;
+    text-decoration: underline;
 }
 
 
@@ -315,9 +322,9 @@ aside ul li {
 /* login page */
 
 #loginForm {
-    border-right: solid 2px #c8c8c8;
+    /*border-right: solid 2px #c8c8c8;*/
     float: left;
-    width: 55%;
+    /*width: 55%;*/
 }
 
 #loginForm .validation-error {
@@ -571,6 +578,9 @@ a.address-company {
     display:inline-block; 
     height: 35px; 
     width: 25px;
+    float: left;
+    margin-top: 14px;
+    margin-right: 15px;
 }
 
 .link-editlink {

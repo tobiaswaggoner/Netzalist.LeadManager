@@ -1,0 +1,7 @@
+﻿@model List<Netzalist.LeadManager.Web.Models.ViewModels.Leads.PersonViewModel>
+
+<h2>Kontakte</h2>
+@foreach (var nxtPerson in Model)
+{
+    @nxtPerson.LastName
+}
