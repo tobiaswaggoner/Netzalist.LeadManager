@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using Netzalist.LeadManager.Web.Models.DataModels.Accounts;
@@ -75,6 +76,21 @@ namespace Netzalist.LeadManager.Web.DataAccess
                 _instance = context;
 
             return context;
+        }
+
+        /// <summary>
+        ///     This method is never called. It ensures that the EntityFramework.SqlServer library will be copied to apps using
+        ///     this library
+        /// </summary>
+        public void FixEfProviderServicesProblem()
+        {
+            //The Entity Framework provider type 'System.Data.Entity.SqlServer.SqlProviderServices, EntityFramework.SqlServer'
+            //for the 'System.Data.SqlClient' ADO.NET provider could not be loaded. 
+            //Make sure the provider assembly is available to the running application. 
+            //See http://go.microsoft.com/fwlink/?LinkId=260882 for more information.
+
+            // ReSharper disable once UnusedVariable
+            var instance = SqlProviderServices.Instance;
         }
     }
 }
